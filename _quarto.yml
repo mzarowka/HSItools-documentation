@@ -1,0 +1,23 @@
+project:
+  type: book
+
+book:
+  title: "HSItools documentation"
+  author: "Maurycy Żarczyński"
+  date: "30.07.2024"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: flatly
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
