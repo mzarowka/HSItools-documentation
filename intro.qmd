@@ -3,7 +3,3 @@
 HSItools offers an easy way to preprocess Specim data. However, if the data follows the same rules, it can be generalized to the broader workflow.
 
 ## Data structure
-
-```{r}
-
-```

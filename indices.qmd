@@ -61,7 +61,7 @@ rabd_strict <- reflectance |>
     rabd_type = "strict")
 ```
 
-### Variant  3 – "midpoint"
+### Variant 3 – "midpoint"
 
 This is variant 2 (strict), with the added shortcut of always finding the middle point between the through edges - a convenience shortcut for some.
 
@@ -116,9 +116,9 @@ difference_650675 <- reflectance |> #<1>
 
 ## Other
 
-### λREMP
+### λ Red Edge Minimum Point (λREMP)
 
-This index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717. <https://doi.org/10.1002/lom3.10576”>
+This index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.
 
 ```{r}
 #| eval: false
