@@ -1,9 +1,9 @@
-# Introduction
+# Initial state
 
-This is a book created from markdown and executable code.
+HSItools offers an easy way to preprocess Specim data. However, if the data follows the same rules, it can be generalized to the broader workflow.
 
-See @knuth84 for additional discussion of literate programming.
+## Data structure
 
 ```{r}
-1 + 1
+
 ```

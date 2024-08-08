@@ -16,7 +16,7 @@ If Shiny GUI was used for data selection, cropping, and calibration, then it is 
 #| eval: false
 
 # Create normalized reflectance file
-normalized <- hsi_tools_core |> #<1>
+reflectance <- hsi_tools_core |> #<1>
   HSItools::prepare_core() #<2>
 ```
 
@@ -34,7 +34,7 @@ If no Shiny output is available and input is not produced by hand, the normaliza
 #| eval: false
 
 # Create normalized reflectance file
-normalized <- hsi_tools_core |>
+reflectance <- hsi_tools_core |>
   HSItools::prepare_core()
 ```
 

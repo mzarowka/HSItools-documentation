@@ -3,3 +3,7 @@
 This is a companion book to the [HSItools](https://mzarowka.github.io/HSItools/ "https://mzarowka.github.io/HSItools/") R package, aiming at processing and visualizing hyperspectral scanning data.
 
 Maurycy Żarczyński, David C. Edge, Nick P. McKay, and Paul D. Zander developed the package with the community's help.
+
+The current requirements to run HSItools are as follows:
+
+R: \>= 4.1 – this is necessary because we depend on the native R pipe and lambda functions introduced with R 4.1
