@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: c3412d57-ab0a-485e-ba50-e656bbbe1593
+      url: 'https://mzarowka.quarto.pub/hsitools'

@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Maurycy Żarczyński">
 
-<title>HSItools documentation</title>
+<title>2&nbsp; Shiny app – HSItools documentation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./preprocessing.html" rel="next">
+<link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./shiny.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Shiny app</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -108,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -120,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./shiny.html" class="sidebar-item-text sidebar-link">
+  <a href="./shiny.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Shiny app</span></span></a>
   </div>
 </li>
@@ -152,7 +152,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#screen-1-initial-settings" id="toc-screen-1-initial-settings" class="nav-link active" data-scroll-target="#screen-1-initial-settings"><span class="header-section-number">2.1</span> Screen 1: Initial settings</a></li>
+  <li><a href="#screen-2-data-choice" id="toc-screen-2-data-choice" class="nav-link" data-scroll-target="#screen-2-data-choice"><span class="header-section-number">2.2</span> Screen 2: Data choice</a></li>
+  <li><a href="#screen-3-cropping" id="toc-screen-3-cropping" class="nav-link" data-scroll-target="#screen-3-cropping"><span class="header-section-number">2.3</span> Screen 3: Cropping</a></li>
+  <li><a href="#screen-4-roi-selection" id="toc-screen-4-roi-selection" class="nav-link" data-scroll-target="#screen-4-roi-selection"><span class="header-section-number">2.4</span> Screen 4: ROI selection</a></li>
+  <li><a href="#screen-5-calibration" id="toc-screen-5-calibration" class="nav-link" data-scroll-target="#screen-5-calibration"><span class="header-section-number">2.5</span> Screen 5: Calibration</a></li>
   </ul>
 </nav>
     </div>
@@ -161,26 +165,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">HSItools documentation</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Shiny app</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Maurycy Żarczyński </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Invalid Date</p>
-    </div>
-  </div>
   
     
   </div>
@@ -190,10 +182,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>This is a companion book to the <a href="https://mzarowka.github.io/HSItools/" title="https://mzarowka.github.io/HSItools/">HSItools</a> R package, aiming at processing and visualizing hyperspectral scanning data.</p>
-<p>Maurycy Żarczyński, David C. Edge, Nick P. McKay, and Paul D. Zander developed the package with the community’s help.</p>
+<p>Our shiny app allows quick choice of data, settings, regions of interest (ROI), and depth calibration. Here, we walk through the entire app, screen by screen.</p>
+<section id="screen-1-initial-settings" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="screen-1-initial-settings"><span class="header-section-number">2.1</span> Screen 1: Initial settings</h2>
+<p>On this screen, you have to make an initial choice. First, you need to decide whether you need to normalize data or not. If you have a reflectance file from other software, like Lumo®, you probably do not need to normalize the file from the beginning. This is one of the most time-consuming processes. Suppose you decide that you need to normalize your data. In that case, you can select other integration times for your white and dark references if you scanned your target with different settings for target and references. This can happen if you were worried about white reference overexposure, whereas your target was very dark. Finally, you can select some proposed HSI indices from the defaults.</p>
+</section>
+<section id="screen-2-data-choice" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="screen-2-data-choice"><span class="header-section-number">2.2</span> Screen 2: Data choice</h2>
+</section>
+<section id="screen-3-cropping" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="screen-3-cropping"><span class="header-section-number">2.3</span> Screen 3: Cropping</h2>
+</section>
+<section id="screen-4-roi-selection" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="screen-4-roi-selection"><span class="header-section-number">2.4</span> Screen 4: ROI selection</h2>
+</section>
+<section id="screen-5-calibration" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="screen-5-calibration"><span class="header-section-number">2.5</span> Screen 5: Calibration</h2>
 
 
 </section>
@@ -621,10 +625,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./preprocessing.html" class="pagination-link" aria-label="Preprocessing">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preprocessing</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

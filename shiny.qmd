@@ -1,0 +1,15 @@
+# Shiny app
+
+Our shiny app allows quick choice of data, settings, regions of interest (ROI), and depth calibration. Here, we walk through the entire app, screen by screen.
+
+## Screen 1: Initial settings
+
+On this screen, you have to make an initial choice. First, you need to decide whether you need to normalize data or not. If you have a reflectance file from other software, like Lumo®, you probably do not need to normalize the file from the beginning. This is one of the most time-consuming processes. Suppose you decide that you need to normalize your data. In that case, you can select other integration times for your white and dark references if you scanned your target with different settings for target and references. This can happen if you were worried about white reference overexposure, whereas your target was very dark. Finally, you can select some proposed HSI indices from the defaults.
+
+## Screen 2: Data choice
+
+## Screen 3: Cropping
+
+## Screen 4: ROI selection
+
+## Screen 5: Calibration

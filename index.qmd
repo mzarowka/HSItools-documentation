@@ -1,9 +1,5 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+This is a companion book to the [HSItools](https://mzarowka.github.io/HSItools/ "https://mzarowka.github.io/HSItools/") R package, aiming at processing and visualizing hyperspectral scanning data.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-```{r}
-1 + 1
-```
+Maurycy Żarczyński, David C. Edge, Nick P. McKay, and Paul D. Zander developed the package with the community's help.
