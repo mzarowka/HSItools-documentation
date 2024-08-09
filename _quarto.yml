@@ -4,12 +4,13 @@ project:
 book:
   title: "HSItools documentation"
   author: "Maurycy Żarczyński"
-  date: "30.07.2024"
+  date: "`r Sys.time()`"
   chapters:
     - index.qmd
     - intro.qmd
     - shiny.qmd
     - preprocessing.qmd
+    - indices.qmd
     - summary.qmd
     - references.qmd
 

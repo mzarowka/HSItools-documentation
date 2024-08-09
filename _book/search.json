@@ -1,0 +1,172 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "HSItools documentation",
+    "section": "",
+    "text": "Preface\nThis is a companion book to the HSItools R package, aiming at processing and visualizing hyperspectral scanning data.\nMaurycy Żarczyński, David C. Edge, Nick P. McKay, and Paul D. Zander developed the package with the community’s help.\nThe current requirements to run HSItools are as follows:\nR: 4.1 – this is necessary because we depend on the native R pipe and lambda functions introduced with R 4.1",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Initial state",
+    "section": "",
+    "text": "1.1 Data structure",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Initial state</span>"
+    ]
+  },
+  {
+    "objectID": "shiny.html",
+    "href": "shiny.html",
+    "title": "2  Shiny app",
+    "section": "",
+    "text": "2.1 Screen 1: Initial settings\nOn this screen, you have to make an initial choice. First, you need to decide whether you need to normalize data or not. If you have a reflectance file from other software, like Lumo®, you probably do not need to normalize the file from the beginning. This is one of the most time-consuming processes. Suppose you decide that you need to normalize your data. In that case, you can select other integration times for your white and dark references if you scanned your target with different settings for target and references. This can happen if you were worried about white reference overexposure, whereas your target was very dark. Finally, you can select some proposed HSI indices from the defaults.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
+    ]
+  },
+  {
+    "objectID": "shiny.html#screen-2-data-choice",
+    "href": "shiny.html#screen-2-data-choice",
+    "title": "2  Shiny app",
+    "section": "2.2 Screen 2: Data choice",
+    "text": "2.2 Screen 2: Data choice",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
+    ]
+  },
+  {
+    "objectID": "shiny.html#screen-3-cropping",
+    "href": "shiny.html#screen-3-cropping",
+    "title": "2  Shiny app",
+    "section": "2.3 Screen 3: Cropping",
+    "text": "2.3 Screen 3: Cropping",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
+    ]
+  },
+  {
+    "objectID": "shiny.html#screen-4-roi-selection",
+    "href": "shiny.html#screen-4-roi-selection",
+    "title": "2  Shiny app",
+    "section": "2.4 Screen 4: ROI selection",
+    "text": "2.4 Screen 4: ROI selection",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
+    ]
+  },
+  {
+    "objectID": "shiny.html#screen-5-calibration",
+    "href": "shiny.html#screen-5-calibration",
+    "title": "2  Shiny app",
+    "section": "2.5 Screen 5: Calibration",
+    "text": "2.5 Screen 5: Calibration",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
+    ]
+  },
+  {
+    "objectID": "preprocessing.html",
+    "href": "preprocessing.html",
+    "title": "3  Preprocessing",
+    "section": "",
+    "text": "3.1 Normalization\nBefore any spectral indices and properties are calculated, normalizing the data and expressing it as a reflectance is necessary. Here, reflectance is a fraction of the signal between the dark and white references acquired during or before the scan.\nNormalization is achieved by following the equation:\nWhich can be modified for different acquisition setups for references:",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "preprocessing.html#normalization",
+    "href": "preprocessing.html#normalization",
+    "title": "3  Preprocessing",
+    "section": "",
+    "text": "3.1.1 Normalization with Shiny output\nIf Shiny GUI was used for data selection, cropping, and calibration, then it is easy to pass the output of Shiny to the normalization routine. The normalized file or files will be written into your data’s products directory.\n\n# Create normalized reflectance file\n1reflectance &lt;- hsi_tools_core |&gt;\n2  HSItools::prepare_core()\n\n\n1\n\nThe Shiny GUI output.\n\n2\n\nNormalization function.\n\n\n\n\nIt is possible to iterate over multiple directories at once using the {purrr} package.\n\n\n3.1.2 Normalization of the directory (no Shiny output)\nIf no Shiny output is available and input is not produced by hand, the normalization routine can be run without it. In such a case, the entire capture data will be normalized. However, without Shiny output, it is harder to calibrate distances properly.\n\n# Create normalized reflectance file\nreflectance &lt;- hsi_tools_core |&gt;\n  HSItools::prepare_core()\n\nIt is possible to iterate over multiple directories at once using the {purrr} package.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "indices.html",
+    "href": "indices.html",
+    "title": "4  Indices",
+    "section": "",
+    "text": "4.1 Mean reflectance (Rmean)\nThe most straightforward index is the mean of the reflectance values of all selected wavelengths within a given pixel. It reflects overall changes in the darkness or brightness of the captured specimen.\n1rmean &lt;- reflectance |&gt;\n2  HSItools::calculate_rmean()\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+    ]
+  },
+  {
+    "objectID": "indices.html#relative-absorption-band-depth-rabd",
+    "href": "indices.html#relative-absorption-band-depth-rabd",
+    "title": "4  Indices",
+    "section": "4.2 Relative Absorption Band Depth (RABD)",
+    "text": "4.2 Relative Absorption Band Depth (RABD)\nA common index which\nThe RABD calculation has variations, but the results are generally not drastically different. You can use predefined values or provide them manually.\nThe output’s name informs you about the calculated proxy and additional modifications to the reflectance file; here, we see that it was calculated with Savitzky-Golay smoothed reflectance. Let’s calculate one of the most common indices to estimate the total chloropigments-a: RABD660:670.\n\n4.2.1 Variant 1 – “max”\nIn this variant, a minimum reflectance is found in the trough for each pixel and flexibly used for calculations.\n\n1rabd_max &lt;- reflectance |&gt;\n2  HSItools::calculate_rabd(\n3    edges = proxies$rabd_b660b670$edges,\n4    trough = c(660:670),\n5    rabd_name = proxies$rabd_b660b670$proxy_name,\n6    rabd_type = \"max\")\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nEdges of the trough, the broader scope.\n\n4\n\nTrough of interest, a narrower scope to find the reflectance value.\n\n5\n\nName of the index to be stored in the raster data.\n\n6\n\nType of the RABD calculation.\n\n\n\n\n\n\n4.2.2 Variant 2 – “strict”\nThis classic variant supplies a specific wavelength to calculate RABD for every pixel.\n\nrabd_strict &lt;- reflectance |&gt;\n  HSItools::calculate_rabd(\n    edges = proxies$rabd_b660b670$edges,\n    trough = proxies$rabd_b660b670$trough,\n    rabd_name = proxies$rabd_b660b670$proxy_name,\n    rabd_type = \"strict\")\n\n\n\n4.2.3 Variant 3 – “midpoint”\nThis is variant 2 (strict), with the added shortcut of always finding the middle point between the through edges - a convenience shortcut for some.\n\nrabd_midpoint &lt;- reflectance |&gt;\n  HSItools::calculate_rabd(\n    edges = proxies$rabd_b660b670$edges,\n    trough = proxies$rabd_b660b670$trough,\n    rabd_name = proxies$rabd_b660b670$proxy_name,\n    rabd_type = \"mid\")",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+    ]
+  },
+  {
+    "objectID": "indices.html#relative-absorption-band-area",
+    "href": "indices.html#relative-absorption-band-area",
+    "title": "4  Indices",
+    "section": "4.3 Relative Absorption Band Area",
+    "text": "4.3 Relative Absorption Band Area",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+    ]
+  },
+  {
+    "objectID": "indices.html#spectral-ratios",
+    "href": "indices.html#spectral-ratios",
+    "title": "4  Indices",
+    "section": "4.4 Spectral ratios",
+    "text": "4.4 Spectral ratios\nAnother popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.\n\n1ratio_570630 &lt;- reflectance |&gt;\n2  HSItools::calculate_band_ratio(\n3    edges = proxies$ratio_b570b630$edges,\n4    ratio_name = proxies$ratio_b570b630$proxy_name)\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nWavelength X and Y, numerator and denominator.\n\n4\n\nName of the index to be stored in the raster data.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+    ]
+  },
+  {
+    "objectID": "indices.html#derivatives",
+    "href": "indices.html#derivatives",
+    "title": "4  Indices",
+    "section": "4.5 Derivatives",
+    "text": "4.5 Derivatives",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+    ]
+  },
+  {
+    "objectID": "indices.html#differences",
+    "href": "indices.html#differences",
+    "title": "4  Indices",
+    "section": "4.6 Differences",
+    "text": "4.6 Differences\n\n1difference_650675 &lt;- reflectance |&gt;\n2  HSItools::calculate_band_difference(\n3    difference_name = proxies$diff_b650b675$proxy_name,\n4    edges = proxies$diff_b650b675$edges)\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nWavelength X and Y.\n\n4\n\nName of the index to be stored in the raster data.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+    ]
+  },
+  {
+    "objectID": "indices.html#other",
+    "href": "indices.html#other",
+    "title": "4  Indices",
+    "section": "4.7 Other",
+    "text": "4.7 Other\n\n4.7.1 λ Red Edge Minimum Point (λREMP)\nThis index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.\n\nremp &lt;- reflectance |&gt;\n  HSItools::calculate_remp()",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "5  Summary",
+    "section": "",
+    "text": "In summary, this book has just begun.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  }
+]
