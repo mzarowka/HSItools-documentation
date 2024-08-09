@@ -3,3 +3,29 @@
 HSItools offers an easy way to preprocess Specim data. However, if the data follows the same rules, it can be generalized to the broader workflow.
 
 ## Data structure
+
+Data should be structured as follows:
+
+> – NAME \<directory\>
+>
+> –– capture \<directory\>
+>
+> ––– DARKREF_NAME.hdr
+>
+> ––– DARKREF_NAME.log
+>
+> ––– DARKREF_NAME.raw
+>
+> ––– NAME.hdr
+>
+> ––– NAME.log
+>
+> ––– NAME.raw
+>
+> ––– WHITEREF_NAME.hdr
+>
+> ––– WHITEREF_NAME.log
+>
+> ––– WHITEREF_NAME.raw
+
+However, if necessary, you can select appropriate files on your own. Files with the extension .raw are data files, while files with the .hdr extension are header files that contain essential information, such as the number of pixels, facilitating data reading.

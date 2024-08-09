@@ -10,7 +10,10 @@ book:
     - intro.qmd
     - shiny.qmd
     - preprocessing.qmd
+    - rois.qmd
     - indices.qmd
+    - visualizing.qmd
+    - extracting.qmd
     - summary.qmd
     - references.qmd
 
