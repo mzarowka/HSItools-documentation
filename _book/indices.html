@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Indices – HSItools documentation</title>
+<title>5&nbsp; Indices – HSItools documentation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
-<link href="./preprocessing.html" rel="prev">
+<link href="./visualizing.html" rel="next">
+<link href="./rois.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./indices.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Indices</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./indices.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Indices</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -166,14 +166,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./rois.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regions of interest</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./indices.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Indices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Indices</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visualizing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Visualizing the data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./extracting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Extracting the data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -192,20 +210,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#mean-reflectance-rmean" id="toc-mean-reflectance-rmean" class="nav-link active" data-scroll-target="#mean-reflectance-rmean"><span class="header-section-number">4.1</span> Mean reflectance (Rmean)</a></li>
-  <li><a href="#relative-absorption-band-depth-rabd" id="toc-relative-absorption-band-depth-rabd" class="nav-link" data-scroll-target="#relative-absorption-band-depth-rabd"><span class="header-section-number">4.2</span> Relative Absorption Band Depth (RABD)</a>
+  <li><a href="#mean-reflectance-rmean" id="toc-mean-reflectance-rmean" class="nav-link active" data-scroll-target="#mean-reflectance-rmean"><span class="header-section-number">5.1</span> Mean reflectance (Rmean)</a></li>
+  <li><a href="#relative-absorption-band-depth-rabd" id="toc-relative-absorption-band-depth-rabd" class="nav-link" data-scroll-target="#relative-absorption-band-depth-rabd"><span class="header-section-number">5.2</span> Relative Absorption Band Depth (RABD)</a>
   <ul class="collapse">
-  <li><a href="#variant-1-max" id="toc-variant-1-max" class="nav-link" data-scroll-target="#variant-1-max"><span class="header-section-number">4.2.1</span> Variant 1 – “max”</a></li>
-  <li><a href="#variant-2-strict" id="toc-variant-2-strict" class="nav-link" data-scroll-target="#variant-2-strict"><span class="header-section-number">4.2.2</span> Variant 2 – “strict”</a></li>
-  <li><a href="#variant-3-midpoint" id="toc-variant-3-midpoint" class="nav-link" data-scroll-target="#variant-3-midpoint"><span class="header-section-number">4.2.3</span> Variant 3 – “midpoint”</a></li>
+  <li><a href="#variant-1-max" id="toc-variant-1-max" class="nav-link" data-scroll-target="#variant-1-max"><span class="header-section-number">5.2.1</span> Variant 1 – “max”</a></li>
+  <li><a href="#variant-2-strict" id="toc-variant-2-strict" class="nav-link" data-scroll-target="#variant-2-strict"><span class="header-section-number">5.2.2</span> Variant 2 – “strict”</a></li>
+  <li><a href="#variant-3-midpoint" id="toc-variant-3-midpoint" class="nav-link" data-scroll-target="#variant-3-midpoint"><span class="header-section-number">5.2.3</span> Variant 3 – “midpoint”</a></li>
   </ul></li>
-  <li><a href="#relative-absorption-band-area" id="toc-relative-absorption-band-area" class="nav-link" data-scroll-target="#relative-absorption-band-area"><span class="header-section-number">4.3</span> Relative Absorption Band Area</a></li>
-  <li><a href="#spectral-ratios" id="toc-spectral-ratios" class="nav-link" data-scroll-target="#spectral-ratios"><span class="header-section-number">4.4</span> Spectral ratios</a></li>
-  <li><a href="#derivatives" id="toc-derivatives" class="nav-link" data-scroll-target="#derivatives"><span class="header-section-number">4.5</span> Derivatives</a></li>
-  <li><a href="#differences" id="toc-differences" class="nav-link" data-scroll-target="#differences"><span class="header-section-number">4.6</span> Differences</a></li>
-  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other"><span class="header-section-number">4.7</span> Other</a>
+  <li><a href="#relative-absorption-band-area" id="toc-relative-absorption-band-area" class="nav-link" data-scroll-target="#relative-absorption-band-area"><span class="header-section-number">5.3</span> Relative Absorption Band Area</a></li>
+  <li><a href="#spectral-ratios" id="toc-spectral-ratios" class="nav-link" data-scroll-target="#spectral-ratios"><span class="header-section-number">5.4</span> Spectral ratios</a></li>
+  <li><a href="#derivatives" id="toc-derivatives" class="nav-link" data-scroll-target="#derivatives"><span class="header-section-number">5.5</span> Derivatives</a></li>
+  <li><a href="#differences" id="toc-differences" class="nav-link" data-scroll-target="#differences"><span class="header-section-number">5.6</span> Differences</a></li>
+  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other"><span class="header-section-number">5.7</span> Other</a>
   <ul class="collapse">
-  <li><a href="#λ-red-edge-minimum-point-λremp" id="toc-λ-red-edge-minimum-point-λremp" class="nav-link" data-scroll-target="#λ-red-edge-minimum-point-λremp"><span class="header-section-number">4.7.1</span> λ Red Edge Minimum Point (λREMP)</a></li>
+  <li><a href="#λ-red-edge-minimum-point-λremp" id="toc-λ-red-edge-minimum-point-λremp" class="nav-link" data-scroll-target="#λ-red-edge-minimum-point-λremp"><span class="header-section-number">5.7.1</span> λ Red Edge Minimum Point (λREMP)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -215,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Indices</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Indices</span></h1>
 </div>
 
 
@@ -233,8 +251,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>HSItools offers a way to calculate a few of the most common indices classes used in paleoenvironmental investigations.</p>
-<section id="mean-reflectance-rmean" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="mean-reflectance-rmean"><span class="header-section-number">4.1</span> Mean reflectance (Rmean)</h2>
+<section id="mean-reflectance-rmean" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="mean-reflectance-rmean"><span class="header-section-number">5.1</span> Mean reflectance (Rmean)</h2>
 <p>The most straightforward index is the mean of the reflectance values of all selected wavelengths within a given pixel. It reflects overall changes in the darkness or brightness of the captured specimen.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>rmean <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
@@ -253,13 +271,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="relative-absorption-band-depth-rabd" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="relative-absorption-band-depth-rabd"><span class="header-section-number">4.2</span> Relative Absorption Band Depth (RABD)</h2>
+<section id="relative-absorption-band-depth-rabd" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="relative-absorption-band-depth-rabd"><span class="header-section-number">5.2</span> Relative Absorption Band Depth (RABD)</h2>
 <p>A common index which</p>
 <p>The RABD calculation has variations, but the results are generally not drastically different. You can use predefined values or provide them manually.</p>
 <p>The output’s name informs you about the calculated proxy and additional modifications to the reflectance file; here, we see that it was calculated with Savitzky-Golay smoothed reflectance. Let’s calculate one of the most common indices to estimate the total chloropigments-<em>a</em>: RABD<sub>660:670</sub>.</p>
-<section id="variant-1-max" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="variant-1-max"><span class="header-section-number">4.2.1</span> Variant 1 – “max”</h3>
+<section id="variant-1-max" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="variant-1-max"><span class="header-section-number">5.2.1</span> Variant 1 – “max”</h3>
 <p>In this variant, a minimum reflectance is found in the trough for each pixel and flexibly used for calculations.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a>rabd_max <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
@@ -298,8 +316,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="variant-2-strict" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="variant-2-strict"><span class="header-section-number">4.2.2</span> Variant 2 – “strict”</h3>
+<section id="variant-2-strict" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="variant-2-strict"><span class="header-section-number">5.2.2</span> Variant 2 – “strict”</h3>
 <p>This classic variant supplies a specific wavelength to calculate RABD for every pixel.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rabd_strict <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
@@ -310,8 +328,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">rabd_type =</span> <span class="st">"strict"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="variant-3-midpoint" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="variant-3-midpoint"><span class="header-section-number">4.2.3</span> Variant 3 – “midpoint”</h3>
+<section id="variant-3-midpoint" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="variant-3-midpoint"><span class="header-section-number">5.2.3</span> Variant 3 – “midpoint”</h3>
 <p>This is variant 2 (strict), with the added shortcut of always finding the middle point between the through edges - a convenience shortcut for some.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy"><code class="sourceCode r"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>rabd_midpoint <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
@@ -323,11 +341,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="relative-absorption-band-area" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="relative-absorption-band-area"><span class="header-section-number">4.3</span> Relative Absorption Band Area</h2>
+<section id="relative-absorption-band-area" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="relative-absorption-band-area"><span class="header-section-number">5.3</span> Relative Absorption Band Area</h2>
 </section>
-<section id="spectral-ratios" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="spectral-ratios"><span class="header-section-number">4.4</span> Spectral ratios</h2>
+<section id="spectral-ratios" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="spectral-ratios"><span class="header-section-number">5.4</span> Spectral ratios</h2>
 <p>Another popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a>ratio_570630 <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
@@ -356,11 +374,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="derivatives" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="derivatives"><span class="header-section-number">4.5</span> Derivatives</h2>
+<section id="derivatives" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="derivatives"><span class="header-section-number">5.5</span> Derivatives</h2>
 </section>
-<section id="differences" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="differences"><span class="header-section-number">4.6</span> Differences</h2>
+<section id="differences" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="differences"><span class="header-section-number">5.6</span> Differences</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>difference_650675 <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">calculate_band_difference</span>(</span>
@@ -388,10 +406,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="other" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="other"><span class="header-section-number">4.7</span> Other</h2>
-<section id="λ-red-edge-minimum-point-λremp" class="level3" data-number="4.7.1">
-<h3 data-number="4.7.1" class="anchored" data-anchor-id="λ-red-edge-minimum-point-λremp"><span class="header-section-number">4.7.1</span> λ Red Edge Minimum Point (λREMP)</h3>
+<section id="other" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="other"><span class="header-section-number">5.7</span> Other</h2>
+<section id="λ-red-edge-minimum-point-λremp" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="λ-red-edge-minimum-point-λremp"><span class="header-section-number">5.7.1</span> λ Red Edge Minimum Point (λREMP)</h3>
 <p>This index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy"><code class="sourceCode r"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a>remp <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
@@ -825,13 +843,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./preprocessing.html" class="pagination-link" aria-label="Preprocessing">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preprocessing</span></span>
+      <a href="./rois.html" class="pagination-link" aria-label="Regions of interest">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regions of interest</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./visualizing.html" class="pagination-link" aria-label="Visualizing the data">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Visualizing the data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

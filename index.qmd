@@ -6,4 +6,26 @@ Maurycy Żarczyński, David C. Edge, Nick P. McKay, and Paul D. Zander developed
 
 The current requirements to run HSItools are as follows:
 
-R: 4.1 – this is necessary because we depend on the native R pipe and lambda functions introduced with R 4.1
+R: 4.1 is necessary because we depend on the native R pipe and lambda functions introduced with R 4.1.
+
+Rtools.
+
+## Installation
+
+{HSItools} is currently in development and available only from GitHub.
+
+::: callout-tip
+## Package installation
+
+We are using {pak} for installation from remote sources.
+:::
+
+```{r}
+#| eval: false
+
+# Install pak if necessary
+install.packages("pak")
+
+# Install HSItools
+pak::pak("mzarowka/HSItools")
+```

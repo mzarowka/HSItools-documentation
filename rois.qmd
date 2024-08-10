@@ -1,7 +1,21 @@
 # Regions of interest
 
-Selecting regions of interest (ROI) is a crucial task that requires one to decide which parts of the spatial dataset will be analyzed. With HSItools, we follow two paths to select the data. The short one is based solely on the Shiny output and is limited, and the longer one is based on the Geographic Information System (GIS Software). In the spirit of the free and open source, we suggest QGIS, but other apps, such as ArcGIS Pro, allow the same functionality. What's important is that using GIS will enable you to freely draw shapes for data masking, a technique that allows you to focus on specific areas of the dataset while excluding others – more on this later.
+Selecting regions of interest (ROI) is a crucial task that requires deciding which parts of the spatial dataset will be analyzed. With HSItools, we follow two paths to select the data. The short one is based solely on the Shiny output and is limited, and the longer one is based on the Geographic Information System (GIS Software). In the spirit of the free and open source, we suggest [QGIS](https://qgis.org "Official QGIS website"), but other apps, such as [ArcGIS Pro](https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview "ArcGIS Pro official website"), allow the same functionality. What's important is that using GIS will enable you to freely draw shapes for data masking, a technique that helps you to focus on specific areas of the dataset while excluding others – more on this later.
 
 ## Short path – The Shiny Path
 
+If you opt for the Shiny path, you will work with ROIs selected in the Shiny app. These ROIs are strictly rectangular, and you don't have an immediate option to mask the data. However, you can still do it later, as you can mask any raster data. The selected regions are available within the HSItools_core.rds file or stored as an in-memory object.
+
 ## Long path – The GIS Path
+
+Here, we assume we are at least somewhat familiar with the GIS environment.
+
+::: callout-tip
+## QGIS project
+
+It is a good idea to save the QGIS project file so you can keep the placement and customization of your layers. We suggest keeping the project name the same as your captured data.
+:::
+
+For speed, we load the full-resolution RGB preview generated previously with the `stretch_raster_full()` function, preferably a .tiff file. Simply dragging and dropping into the empty window is enough. In the options of your new raster layer, you can increase your data's brightness or contrast, making drawing easier.
+
+Once you're happy with your project and data presentation, start drawing.

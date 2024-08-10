@@ -4,7 +4,17 @@
     "href": "index.html",
     "title": "HSItools documentation",
     "section": "",
-    "text": "Preface\nThis is a companion book to the HSItools R package, aiming at processing and visualizing hyperspectral scanning data.\nMaurycy Żarczyński, David C. Edge, Nick P. McKay, and Paul D. Zander developed the package with the community’s help.\nThe current requirements to run HSItools are as follows:\nR: 4.1 – this is necessary because we depend on the native R pipe and lambda functions introduced with R 4.1",
+    "text": "Preface\nThis is a companion book to the HSItools R package, aiming at processing and visualizing hyperspectral scanning data.\nMaurycy Żarczyński, David C. Edge, Nick P. McKay, and Paul D. Zander developed the package with the community’s help.\nThe current requirements to run HSItools are as follows:\nR: 4.1 is necessary because we depend on the native R pipe and lambda functions introduced with R 4.1.\nRtools.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "HSItools documentation",
+    "section": "Installation",
+    "text": "Installation\n{HSItools} is currently in development and available only from GitHub.\n\n\n\n\n\n\nPackage installation\n\n\n\nWe are using {pak} for installation from remote sources.\n\n\n\n# Install pak if necessary\ninstall.packages(\"pak\")\n\n# Install HSItools\npak::pak(\"mzarowka/HSItools\")",
     "crumbs": [
       "Preface"
     ]
@@ -14,7 +24,27 @@
     "href": "intro.html",
     "title": "1  Initial state",
     "section": "",
-    "text": "1.1 Data structure",
+    "text": "1.1 Data structure\nData should be structured as follows:\nHowever, if necessary, you can select appropriate files on your own. Files with the extension .raw are data files, while files with the .hdr extension are header files that contain essential information, such as the number of pixels, facilitating data reading.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Initial state</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#data-structure",
+    "href": "intro.html#data-structure",
+    "title": "1  Initial state",
+    "section": "",
+    "text": "– NAME &lt;directory&gt;\n–– capture &lt;directory&gt;\n––– DARKREF_NAME.hdr\n––– DARKREF_NAME.log\n––– DARKREF_NAME.raw\n––– NAME.hdr\n––– NAME.log\n––– NAME.raw\n––– WHITEREF_NAME.hdr\n––– WHITEREF_NAME.log\n––– WHITEREF_NAME.raw",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Initial state</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#startup",
+    "href": "intro.html#startup",
+    "title": "1  Initial state",
+    "section": "1.2 Startup",
+    "text": "1.2 Startup\nStart by loading all necessary packages{HSItools} will load essential functions from the namespace, but to be sure, call all packages.\n\n# Load packages\nlibrary(HSItools)\nlibrary(terra)\nlibrary(tidyterra)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggplot2)\nlibrary(signal)\n\nHyperspectral data gets quite large. It is a good practice to process data stored on an SSD drive separate from your Operating System (OS). While data is stored on a separate drive, it is beneficial to instruct {terra} to store temporary data on a separate drive, too. Adjust this according to your OS. Here, we are using a non-system drive on Windows 11. We set the maximum allowed RAM to a high value of 0.9. It would be best to decide according to the available memory and OS requirements.\n\n# Set tempdir\nterra::terraOptions(tempdir = \"D:/\", memmax = 0.9)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Initial state</span>"
     ]
@@ -90,83 +120,103 @@
     ]
   },
   {
+    "objectID": "rois.html",
+    "href": "rois.html",
+    "title": "4  Regions of interest",
+    "section": "",
+    "text": "4.1 Short path – The Shiny Path\nIf you opt for the Shiny path, you will work with ROIs selected in the Shiny app. These ROIs are strictly rectangular, and you don’t have an immediate option to mask the data. However, you can still do it later, as you can mask any raster data. The selected regions are available within the HSItools_core.rds file or stored as an in-memory object.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regions of interest</span>"
+    ]
+  },
+  {
+    "objectID": "rois.html#long-path-the-gis-path",
+    "href": "rois.html#long-path-the-gis-path",
+    "title": "4  Regions of interest",
+    "section": "4.2 Long path – The GIS Path",
+    "text": "4.2 Long path – The GIS Path\nHere, we assume we are at least somewhat familiar with the GIS environment.\n\n\n\n\n\n\nQGIS project\n\n\n\nIt is a good idea to save the QGIS project file so you can keep the placement and customization of your layers. We suggest keeping the project name the same as your captured data.\n\n\nFor speed, we load the full-resolution RGB preview generated previously with the stretch_raster_full() function, preferably a .tiff file. Simply dragging and dropping into the empty window is enough. In the options of your new raster layer, you can increase your data’s brightness or contrast, making drawing easier.\nOnce you’re happy with your project and data presentation, start drawing.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regions of interest</span>"
+    ]
+  },
+  {
     "objectID": "indices.html",
     "href": "indices.html",
-    "title": "4  Indices",
+    "title": "5  Indices",
     "section": "",
-    "text": "4.1 Mean reflectance (Rmean)\nThe most straightforward index is the mean of the reflectance values of all selected wavelengths within a given pixel. It reflects overall changes in the darkness or brightness of the captured specimen.\n1rmean &lt;- reflectance |&gt;\n2  HSItools::calculate_rmean()\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.",
+    "text": "5.1 Mean reflectance (Rmean)\nThe most straightforward index is the mean of the reflectance values of all selected wavelengths within a given pixel. It reflects overall changes in the darkness or brightness of the captured specimen.\n1rmean &lt;- reflectance |&gt;\n2  HSItools::calculate_rmean()\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
   },
   {
     "objectID": "indices.html#relative-absorption-band-depth-rabd",
     "href": "indices.html#relative-absorption-band-depth-rabd",
-    "title": "4  Indices",
-    "section": "4.2 Relative Absorption Band Depth (RABD)",
-    "text": "4.2 Relative Absorption Band Depth (RABD)\nA common index which\nThe RABD calculation has variations, but the results are generally not drastically different. You can use predefined values or provide them manually.\nThe output’s name informs you about the calculated proxy and additional modifications to the reflectance file; here, we see that it was calculated with Savitzky-Golay smoothed reflectance. Let’s calculate one of the most common indices to estimate the total chloropigments-a: RABD660:670.\n\n4.2.1 Variant 1 – “max”\nIn this variant, a minimum reflectance is found in the trough for each pixel and flexibly used for calculations.\n\n1rabd_max &lt;- reflectance |&gt;\n2  HSItools::calculate_rabd(\n3    edges = proxies$rabd_b660b670$edges,\n4    trough = c(660:670),\n5    rabd_name = proxies$rabd_b660b670$proxy_name,\n6    rabd_type = \"max\")\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nEdges of the trough, the broader scope.\n\n4\n\nTrough of interest, a narrower scope to find the reflectance value.\n\n5\n\nName of the index to be stored in the raster data.\n\n6\n\nType of the RABD calculation.\n\n\n\n\n\n\n4.2.2 Variant 2 – “strict”\nThis classic variant supplies a specific wavelength to calculate RABD for every pixel.\n\nrabd_strict &lt;- reflectance |&gt;\n  HSItools::calculate_rabd(\n    edges = proxies$rabd_b660b670$edges,\n    trough = proxies$rabd_b660b670$trough,\n    rabd_name = proxies$rabd_b660b670$proxy_name,\n    rabd_type = \"strict\")\n\n\n\n4.2.3 Variant 3 – “midpoint”\nThis is variant 2 (strict), with the added shortcut of always finding the middle point between the through edges - a convenience shortcut for some.\n\nrabd_midpoint &lt;- reflectance |&gt;\n  HSItools::calculate_rabd(\n    edges = proxies$rabd_b660b670$edges,\n    trough = proxies$rabd_b660b670$trough,\n    rabd_name = proxies$rabd_b660b670$proxy_name,\n    rabd_type = \"mid\")",
+    "title": "5  Indices",
+    "section": "5.2 Relative Absorption Band Depth (RABD)",
+    "text": "5.2 Relative Absorption Band Depth (RABD)\nA common index which\nThe RABD calculation has variations, but the results are generally not drastically different. You can use predefined values or provide them manually.\nThe output’s name informs you about the calculated proxy and additional modifications to the reflectance file; here, we see that it was calculated with Savitzky-Golay smoothed reflectance. Let’s calculate one of the most common indices to estimate the total chloropigments-a: RABD660:670.\n\n5.2.1 Variant 1 – “max”\nIn this variant, a minimum reflectance is found in the trough for each pixel and flexibly used for calculations.\n\n1rabd_max &lt;- reflectance |&gt;\n2  HSItools::calculate_rabd(\n3    edges = proxies$rabd_b660b670$edges,\n4    trough = c(660:670),\n5    rabd_name = proxies$rabd_b660b670$proxy_name,\n6    rabd_type = \"max\")\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nEdges of the trough, the broader scope.\n\n4\n\nTrough of interest, a narrower scope to find the reflectance value.\n\n5\n\nName of the index to be stored in the raster data.\n\n6\n\nType of the RABD calculation.\n\n\n\n\n\n\n5.2.2 Variant 2 – “strict”\nThis classic variant supplies a specific wavelength to calculate RABD for every pixel.\n\nrabd_strict &lt;- reflectance |&gt;\n  HSItools::calculate_rabd(\n    edges = proxies$rabd_b660b670$edges,\n    trough = proxies$rabd_b660b670$trough,\n    rabd_name = proxies$rabd_b660b670$proxy_name,\n    rabd_type = \"strict\")\n\n\n\n5.2.3 Variant 3 – “midpoint”\nThis is variant 2 (strict), with the added shortcut of always finding the middle point between the through edges - a convenience shortcut for some.\n\nrabd_midpoint &lt;- reflectance |&gt;\n  HSItools::calculate_rabd(\n    edges = proxies$rabd_b660b670$edges,\n    trough = proxies$rabd_b660b670$trough,\n    rabd_name = proxies$rabd_b660b670$proxy_name,\n    rabd_type = \"mid\")",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
   },
   {
     "objectID": "indices.html#relative-absorption-band-area",
     "href": "indices.html#relative-absorption-band-area",
-    "title": "4  Indices",
-    "section": "4.3 Relative Absorption Band Area",
-    "text": "4.3 Relative Absorption Band Area",
+    "title": "5  Indices",
+    "section": "5.3 Relative Absorption Band Area",
+    "text": "5.3 Relative Absorption Band Area",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
   },
   {
     "objectID": "indices.html#spectral-ratios",
     "href": "indices.html#spectral-ratios",
-    "title": "4  Indices",
-    "section": "4.4 Spectral ratios",
-    "text": "4.4 Spectral ratios\nAnother popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.\n\n1ratio_570630 &lt;- reflectance |&gt;\n2  HSItools::calculate_band_ratio(\n3    edges = proxies$ratio_b570b630$edges,\n4    ratio_name = proxies$ratio_b570b630$proxy_name)\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nWavelength X and Y, numerator and denominator.\n\n4\n\nName of the index to be stored in the raster data.",
+    "title": "5  Indices",
+    "section": "5.4 Spectral ratios",
+    "text": "5.4 Spectral ratios\nAnother popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.\n\n1ratio_570630 &lt;- reflectance |&gt;\n2  HSItools::calculate_band_ratio(\n3    edges = proxies$ratio_b570b630$edges,\n4    ratio_name = proxies$ratio_b570b630$proxy_name)\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nWavelength X and Y, numerator and denominator.\n\n4\n\nName of the index to be stored in the raster data.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
   },
   {
     "objectID": "indices.html#derivatives",
     "href": "indices.html#derivatives",
-    "title": "4  Indices",
-    "section": "4.5 Derivatives",
-    "text": "4.5 Derivatives",
+    "title": "5  Indices",
+    "section": "5.5 Derivatives",
+    "text": "5.5 Derivatives",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
   },
   {
     "objectID": "indices.html#differences",
     "href": "indices.html#differences",
-    "title": "4  Indices",
-    "section": "4.6 Differences",
-    "text": "4.6 Differences\n\n1difference_650675 &lt;- reflectance |&gt;\n2  HSItools::calculate_band_difference(\n3    difference_name = proxies$diff_b650b675$proxy_name,\n4    edges = proxies$diff_b650b675$edges)\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nWavelength X and Y.\n\n4\n\nName of the index to be stored in the raster data.",
+    "title": "5  Indices",
+    "section": "5.6 Differences",
+    "text": "5.6 Differences\n\n1difference_650675 &lt;- reflectance |&gt;\n2  HSItools::calculate_band_difference(\n3    difference_name = proxies$diff_b650b675$proxy_name,\n4    edges = proxies$diff_b650b675$edges)\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nWavelength X and Y.\n\n4\n\nName of the index to be stored in the raster data.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
   },
   {
     "objectID": "indices.html#other",
     "href": "indices.html#other",
-    "title": "4  Indices",
-    "section": "4.7 Other",
-    "text": "4.7 Other\n\n4.7.1 λ Red Edge Minimum Point (λREMP)\nThis index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.\n\nremp &lt;- reflectance |&gt;\n  HSItools::calculate_remp()",
+    "title": "5  Indices",
+    "section": "5.7 Other",
+    "text": "5.7 Other\n\n5.7.1 λ Red Edge Minimum Point (λREMP)\nThis index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.\n\nremp &lt;- reflectance |&gt;\n  HSItools::calculate_remp()",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Indices</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
   },
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "5  Summary",
+    "title": "8  Summary",
     "section": "",
     "text": "In summary, this book has just begun.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Summary</span>"
     ]
   }
 ]

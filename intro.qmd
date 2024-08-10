@@ -29,3 +29,30 @@ Data should be structured as follows:
 > ––– WHITEREF_NAME.raw
 
 However, if necessary, you can select appropriate files on your own. Files with the extension .raw are data files, while files with the .hdr extension are header files that contain essential information, such as the number of pixels, facilitating data reading.
+
+## Startup
+
+Start by loading all necessary packages{HSItools} will load essential functions from the namespace, but to be sure, call all packages.
+
+```{r}
+#| eval: false
+
+# Load packages
+library(HSItools)
+library(terra)
+library(tidyterra)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(signal)
+library(sf)
+```
+
+Hyperspectral data gets quite large. It is a good practice to process data stored on an SSD drive separate from your Operating System (OS). While data is stored on a separate drive, it is beneficial to instruct {terra} to store temporary data on a separate drive, too. Adjust this according to your OS. Here, we are using a non-system drive on Windows 11. We set the maximum allowed RAM to a high value of 0.9. It would be best to decide according to the available memory and OS requirements.
+
+```{r}
+#| eval: false
+
+# Set tempdir
+terra::terraOptions(tempdir = "D:/", memmax = 0.9)
+```

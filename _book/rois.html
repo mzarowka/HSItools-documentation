@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Initial state – HSItools documentation</title>
+<title>4&nbsp; Regions of interest – HSItools documentation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./shiny.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./indices.html" rel="next">
+<link href="./preprocessing.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Initial state</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rois.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regions of interest</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -148,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Initial state</span></span></a>
   </div>
 </li>
@@ -166,7 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rois.html" class="sidebar-item-text sidebar-link">
+  <a href="./rois.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regions of interest</span></span></a>
   </div>
 </li>
@@ -210,8 +176,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-structure" id="toc-data-structure" class="nav-link active" data-scroll-target="#data-structure"><span class="header-section-number">1.1</span> Data structure</a></li>
-  <li><a href="#startup" id="toc-startup" class="nav-link" data-scroll-target="#startup"><span class="header-section-number">1.2</span> Startup</a></li>
+  <li><a href="#short-path-the-shiny-path" id="toc-short-path-the-shiny-path" class="nav-link active" data-scroll-target="#short-path-the-shiny-path"><span class="header-section-number">4.1</span> Short path – The Shiny Path</a></li>
+  <li><a href="#long-path-the-gis-path" id="toc-long-path-the-gis-path" class="nav-link" data-scroll-target="#long-path-the-gis-path"><span class="header-section-number">4.2</span> Long path – The GIS Path</a></li>
   </ul>
 </nav>
     </div>
@@ -220,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Initial state</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regions of interest</span></h1>
 </div>
 
 
@@ -237,43 +203,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>HSItools offers an easy way to preprocess Specim data. However, if the data follows the same rules, it can be generalized to the broader workflow.</p>
-<section id="data-structure" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="data-structure"><span class="header-section-number">1.1</span> Data structure</h2>
-<p>Data should be structured as follows:</p>
-<blockquote class="blockquote">
-<p>– NAME &lt;directory&gt;</p>
-<p>–– capture &lt;directory&gt;</p>
-<p>––– DARKREF_NAME.hdr</p>
-<p>––– DARKREF_NAME.log</p>
-<p>––– DARKREF_NAME.raw</p>
-<p>––– NAME.hdr</p>
-<p>––– NAME.log</p>
-<p>––– NAME.raw</p>
-<p>––– WHITEREF_NAME.hdr</p>
-<p>––– WHITEREF_NAME.log</p>
-<p>––– WHITEREF_NAME.raw</p>
-</blockquote>
-<p>However, if necessary, you can select appropriate files on your own. Files with the extension .raw are data files, while files with the .hdr extension are header files that contain essential information, such as the number of pixels, facilitating data reading.</p>
+<p>Selecting regions of interest (ROI) is a crucial task that requires deciding which parts of the spatial dataset will be analyzed. With HSItools, we follow two paths to select the data. The short one is based solely on the Shiny output and is limited, and the longer one is based on the Geographic Information System (GIS Software). In the spirit of the free and open source, we suggest <a href="https://qgis.org" title="Official QGIS website">QGIS</a>, but other apps, such as <a href="https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview" title="ArcGIS Pro official website">ArcGIS Pro</a>, allow the same functionality. What’s important is that using GIS will enable you to freely draw shapes for data masking, a technique that helps you to focus on specific areas of the dataset while excluding others – more on this later.</p>
+<section id="short-path-the-shiny-path" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="short-path-the-shiny-path"><span class="header-section-number">4.1</span> Short path – The Shiny Path</h2>
+<p>If you opt for the Shiny path, you will work with ROIs selected in the Shiny app. These ROIs are strictly rectangular, and you don’t have an immediate option to mask the data. However, you can still do it later, as you can mask any raster data. The selected regions are available within the HSItools_core.rds file or stored as an in-memory object.</p>
 </section>
-<section id="startup" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="startup"><span class="header-section-number">1.2</span> Startup</h2>
-<p>Start by loading all necessary packages{HSItools} will load essential functions from the namespace, but to be sure, call all packages.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HSItools)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyterra)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(signal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="long-path-the-gis-path" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="long-path-the-gis-path"><span class="header-section-number">4.2</span> Long path – The GIS Path</h2>
+<p>Here, we assume we are at least somewhat familiar with the GIS environment.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Hyperspectral data gets quite large. It is a good practice to process data stored on an SSD drive separate from your Operating System (OS). While data is stored on a separate drive, it is beneficial to instruct {terra} to store temporary data on a separate drive, too. Adjust this according to your OS. Here, we are using a non-system drive on Windows 11. We set the maximum allowed RAM to a high value of 0.9. It would be best to decide according to the available memory and OS requirements.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set tempdir</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">terraOptions</span>(<span class="at">tempdir =</span> <span class="st">"D:/"</span>, <span class="at">memmax =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+QGIS project
 </div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is a good idea to save the QGIS project file so you can keep the placement and customization of your layers. We suggest keeping the project name the same as your captured data.</p>
+</div>
+</div>
+<p>For speed, we load the full-resolution RGB preview generated previously with the <code>stretch_raster_full()</code> function, preferably a .tiff file. Simply dragging and dropping into the empty window is enough. In the options of your new raster layer, you can increase your data’s brightness or contrast, making drawing easier.</p>
+<p>Once you’re happy with your project and data presentation, start drawing.</p>
 
 
 </section>
@@ -701,13 +653,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="./preprocessing.html" class="pagination-link" aria-label="Preprocessing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preprocessing</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./shiny.html" class="pagination-link" aria-label="Shiny app">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Shiny app</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./indices.html" class="pagination-link" aria-label="Indices">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Indices</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
