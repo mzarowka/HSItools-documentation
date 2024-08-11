@@ -217,13 +217,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#variant-2-strict" id="toc-variant-2-strict" class="nav-link" data-scroll-target="#variant-2-strict"><span class="header-section-number">5.2.2</span> Variant 2 – “strict”</a></li>
   <li><a href="#variant-3-midpoint" id="toc-variant-3-midpoint" class="nav-link" data-scroll-target="#variant-3-midpoint"><span class="header-section-number">5.2.3</span> Variant 3 – “midpoint”</a></li>
   </ul></li>
-  <li><a href="#relative-absorption-band-area" id="toc-relative-absorption-band-area" class="nav-link" data-scroll-target="#relative-absorption-band-area"><span class="header-section-number">5.3</span> Relative Absorption Band Area</a></li>
+  <li><a href="#relative-absorption-band-area---todo" id="toc-relative-absorption-band-area---todo" class="nav-link" data-scroll-target="#relative-absorption-band-area---todo"><span class="header-section-number">5.3</span> Relative Absorption Band Area - ToDo</a></li>
   <li><a href="#spectral-ratios" id="toc-spectral-ratios" class="nav-link" data-scroll-target="#spectral-ratios"><span class="header-section-number">5.4</span> Spectral ratios</a></li>
-  <li><a href="#derivatives" id="toc-derivatives" class="nav-link" data-scroll-target="#derivatives"><span class="header-section-number">5.5</span> Derivatives</a></li>
+  <li><a href="#derivatives---todo" id="toc-derivatives---todo" class="nav-link" data-scroll-target="#derivatives---todo"><span class="header-section-number">5.5</span> Derivatives - ToDo</a></li>
   <li><a href="#differences" id="toc-differences" class="nav-link" data-scroll-target="#differences"><span class="header-section-number">5.6</span> Differences</a></li>
   <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other"><span class="header-section-number">5.7</span> Other</a>
   <ul class="collapse">
-  <li><a href="#λ-red-edge-minimum-point-λremp" id="toc-λ-red-edge-minimum-point-λremp" class="nav-link" data-scroll-target="#λ-red-edge-minimum-point-λremp"><span class="header-section-number">5.7.1</span> λ Red Edge Minimum Point (λREMP)</a></li>
+  <li><a href="#λ-red-edge-minimum-point-λremp---todo" id="toc-λ-red-edge-minimum-point-λremp---todo" class="nav-link" data-scroll-target="#λ-red-edge-minimum-point-λremp---todo"><span class="header-section-number">5.7.1</span> λ Red Edge Minimum Point (λREMP) - ToDo</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -275,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="5.2" class="anchored" data-anchor-id="relative-absorption-band-depth-rabd"><span class="header-section-number">5.2</span> Relative Absorption Band Depth (RABD)</h2>
 <p>A common index which</p>
 <p>The RABD calculation has variations, but the results are generally not drastically different. You can use predefined values or provide them manually.</p>
-<p>The output’s name informs you about the calculated proxy and additional modifications to the reflectance file; here, we see that it was calculated with Savitzky-Golay smoothed reflectance. Let’s calculate one of the most common indices to estimate the total chloropigments-<em>a</em>: RABD<sub>660:670</sub>.</p>
+<p>The output’s name informs you about the calculated proxy and additional modifications to the reflectance file; here, we calculated it with Savitzky-Golay smoothed reflectance. Let’s calculate one of the most common indices to estimate the total chloropigments-<em>a</em>: RABD<sub>660:670</sub>.</p>
 <section id="variant-1-max" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="variant-1-max"><span class="header-section-number">5.2.1</span> Variant 1 – “max”</h3>
 <p>In this variant, a minimum reflectance is found in the trough for each pixel and flexibly used for calculations.</p>
@@ -318,40 +318,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="variant-2-strict" class="level3" data-number="5.2.2">
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="variant-2-strict"><span class="header-section-number">5.2.2</span> Variant 2 – “strict”</h3>
-<p>This classic variant supplies a specific wavelength to calculate RABD for every pixel.</p>
+<p>This classic variant supplies a specific wavelength to calculate RABD for every pixel. Therefore, it is RABD<sub>665</sub>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rabd_strict <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">calculate_rabd</span>(</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> proxies<span class="sc">$</span>rabd_b660b670<span class="sc">$</span>edges,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trough =</span> proxies<span class="sc">$</span>rabd_b660b670<span class="sc">$</span>trough,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trough =</span> <span class="dv">665</span>,</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">rabd_name =</span> proxies<span class="sc">$</span>rabd_b660b670<span class="sc">$</span>proxy_name,</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">rabd_type =</span> <span class="st">"strict"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="variant-3-midpoint" class="level3" data-number="5.2.3">
 <h3 data-number="5.2.3" class="anchored" data-anchor-id="variant-3-midpoint"><span class="header-section-number">5.2.3</span> Variant 3 – “midpoint”</h3>
-<p>This is variant 2 (strict), with the added shortcut of always finding the middle point between the through edges - a convenience shortcut for some.</p>
+<p>This is variant 2 (strict), with the added shortcut of always finding the middle point between the through edges—a convenience shortcut for some. Here, it equals RABD<sub>665</sub>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy"><code class="sourceCode r"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>rabd_midpoint <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
 <span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">calculate_rabd</span>(</span>
 <span id="annotated-cell-4-3"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> proxies<span class="sc">$</span>rabd_b660b670<span class="sc">$</span>edges,</span>
-<span id="annotated-cell-4-4"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trough =</span> proxies<span class="sc">$</span>rabd_b660b670<span class="sc">$</span>trough,</span>
+<span id="annotated-cell-4-4"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trough =</span> <span class="fu">c</span>(<span class="dv">660</span><span class="sc">:</span><span class="dv">670</span>),</span>
 <span id="annotated-cell-4-5"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">rabd_name =</span> proxies<span class="sc">$</span>rabd_b660b670<span class="sc">$</span>proxy_name,</span>
 <span id="annotated-cell-4-6"><a href="#annotated-cell-4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">rabd_type =</span> <span class="st">"mid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="relative-absorption-band-area" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="relative-absorption-band-area"><span class="header-section-number">5.3</span> Relative Absorption Band Area</h2>
-</section>
-<section id="spectral-ratios" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="spectral-ratios"><span class="header-section-number">5.4</span> Spectral ratios</h2>
-<p>Another popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.</p>
+<section id="relative-absorption-band-area---todo" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="relative-absorption-band-area---todo"><span class="header-section-number">5.3</span> Relative Absorption Band Area - ToDo</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a>ratio_570630 <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">calculate_band_ratio</span>(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> proxies<span class="sc">$</span>ratio_b570b630<span class="sc">$</span>edges,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ratio_name =</span> proxies<span class="sc">$</span>ratio_b570b630<span class="sc">$</span>proxy_name)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a>raba <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">calculate_raba</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> proxies<span class="sc">$</span>rabd_b660b670<span class="sc">$</span>edges,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trough =</span> <span class="fu">c</span>(<span class="dv">660</span><span class="sc">:</span><span class="dv">670</span>),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">rabd_name =</span> proxies<span class="sc">$</span>rabd_b660b670<span class="sc">$</span>proxy_name,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-5-6" class="code-annotation-target"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">rabd_type =</span> <span class="st">"mid"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
@@ -364,26 +362,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="3">Wavelength X and Y, numerator and denominator.</span>
+<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="3">Edges of the trough, the broader scope.</span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="4">Name of the index to be stored in the raster data.</span>
+<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="4">Trough of interest, a narrower scope to find the reflectance value.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="5" data-code-annotation="5">Name of the index to be stored in the raster data.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="6" data-code-annotation="6">Type of the RABD calculation.</span>
 </dd>
 </dl>
 </div>
 </div>
 </section>
-<section id="derivatives" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="derivatives"><span class="header-section-number">5.5</span> Derivatives</h2>
-</section>
-<section id="differences" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="differences"><span class="header-section-number">5.6</span> Differences</h2>
+<section id="spectral-ratios" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="spectral-ratios"><span class="header-section-number">5.4</span> Spectral ratios</h2>
+<p>Another popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>difference_650675 <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">calculate_band_difference</span>(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">difference_name =</span> proxies<span class="sc">$</span>diff_b650b675<span class="sc">$</span>proxy_name,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-6-4" class="code-annotation-target"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> proxies<span class="sc">$</span>diff_b650b675<span class="sc">$</span>edges)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>ratio_570630 <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">calculate_band_ratio</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> proxies<span class="sc">$</span>ratio_b570b630<span class="sc">$</span>edges,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-6-4" class="code-annotation-target"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ratio_name =</span> proxies<span class="sc">$</span>ratio_b570b630<span class="sc">$</span>proxy_name)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
@@ -396,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="3" data-code-annotation="3">Wavelength X and Y.</span>
+<span data-code-cell="annotated-cell-6" data-code-lines="3" data-code-annotation="3">Wavelength X and Y, numerator and denominator.</span>
 </dd>
 <dt data-target-cell="annotated-cell-6" data-target-annotation="4">4</dt>
 <dd>
@@ -406,14 +410,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+<section id="derivatives---todo" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="derivatives---todo"><span class="header-section-number">5.5</span> Derivatives - ToDo</h2>
+<p>Another popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a>derivative_550 <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">calculate_derivative</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> proxies<span class="sc">$</span>ratio_b570b630<span class="sc">$</span>edges,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-7-4" class="code-annotation-target"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ratio_name =</span> proxies<span class="sc">$</span>ratio_b570b630<span class="sc">$</span>proxy_name)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="1" data-code-annotation="1">Reflectance data is either in memory or from a disk.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="2">Calculation function.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="3" data-code-annotation="3">Wavelength of choice.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="4" data-code-annotation="4">Name of the index to be stored in the raster data.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="differences" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="differences"><span class="header-section-number">5.6</span> Differences</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a>difference_650675 <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-8-2" class="code-annotation-target"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">calculate_band_difference</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-8-3" class="code-annotation-target"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">difference_name =</span> proxies<span class="sc">$</span>diff_b650b675<span class="sc">$</span>proxy_name,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-8-4" class="code-annotation-target"><a href="#annotated-cell-8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">edges =</span> proxies<span class="sc">$</span>diff_b650b675<span class="sc">$</span>edges)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="1" data-code-annotation="1">Reflectance data is either in memory or from a disk.</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="2" data-code-annotation="2">Calculation function.</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="3" data-code-annotation="3">Wavelength X and Y.</span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="4" data-code-annotation="4">Name of the index to be stored in the raster data.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
 <section id="other" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="other"><span class="header-section-number">5.7</span> Other</h2>
-<section id="λ-red-edge-minimum-point-λremp" class="level3" data-number="5.7.1">
-<h3 data-number="5.7.1" class="anchored" data-anchor-id="λ-red-edge-minimum-point-λremp"><span class="header-section-number">5.7.1</span> λ Red Edge Minimum Point (λREMP)</h3>
+<section id="λ-red-edge-minimum-point-λremp---todo" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="λ-red-edge-minimum-point-λremp---todo"><span class="header-section-number">5.7.1</span> λ Red Edge Minimum Point (λREMP) - ToDo</h3>
 <p>This index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy"><code class="sourceCode r"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a>remp <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
-<span id="annotated-cell-7-2"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">calculate_remp</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a>remp <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">calculate_remp</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="1" data-code-annotation="1">Reflectance data is either in memory or from a disk.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="2" data-code-annotation="2">Calculation function.</span>
+</dd>
+</dl>
+</div>
 </div>
 
 

@@ -10,7 +10,7 @@ Which can be modified for different acquisition setups for references:
 
 ### Normalization with Shiny output
 
-If Shiny GUI was used for data selection, cropping, and calibration, then it is easy to pass the output of Shiny to the normalization routine. The normalized file or files will be written into your data's products directory.
+If Shiny GUI was used for data selection, cropping, and calibration, then it would be easy to pass Shiny's output to the normalization routine. The normalized files will be written into your data's products directory.
 
 ```{r}
 #| eval: false
@@ -39,3 +39,33 @@ reflectance <- hsi_tools_core |>
 ```
 
 It is possible to iterate over multiple directories at once using the `{purrr}` package.
+
+## Savitzky-Golay smoothing
+
+Applying spectral smoothing, such as the Savitzky-Golay spectral filter (Savitzky and Golay 1964), is a good idea. This way, spurious, random peaks and throughs do not significantly influence the calculation results.
+
+```{r}
+#| eval: false
+
+
+reflectance <- reflectance |> #<1>
+  # Specify the file extension
+  HSItools::filter_savgol() #<2>
+```
+
+1.  Reflectance data is either in memory or from a disk.
+2.  Calculation function.
+
+## Continuum removal
+
+We can process our data further by removing the continuum, which follows the rule of dividing the spectrum by its bounding box. This way, the spectrum becomes flatter.
+
+```{r}
+#| eval: false
+
+reflectance_cr <- reflectance |> #<1>
+  HSItools::remove_continuum() #<2>
+```
+
+1.  Reflectance data is either in memory or from a disk.
+2.  Calculation function.

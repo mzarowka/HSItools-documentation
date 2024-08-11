@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "HSItools documentation",
     "section": "",
-    "text": "Preface\nThis is a companion book to the HSItools R package, aiming at processing and visualizing hyperspectral scanning data.\nMaurycy Żarczyński, David C. Edge, Nick P. McKay, and Paul D. Zander developed the package with the community’s help.\nThe current requirements to run HSItools are as follows:\nR: 4.1 is necessary because we depend on the native R pipe and lambda functions introduced with R 4.1.\nRtools.",
+    "text": "Preface\nThis is a companion book to the HSItools R package, aiming at processing and visualizing hyperspectral scanning data.\nMaurycy Żarczyński, David C. Edge, Nick P. McKay, and Paul D. Zander developed the package with the community’s help.\nThe current requirements to run HSItools are as follows:",
     "crumbs": [
       "Preface"
     ]
@@ -44,7 +44,7 @@
     "href": "intro.html#startup",
     "title": "1  Initial state",
     "section": "1.2 Startup",
-    "text": "1.2 Startup\nStart by loading all necessary packages{HSItools} will load essential functions from the namespace, but to be sure, call all packages.\n\n# Load packages\nlibrary(HSItools)\nlibrary(terra)\nlibrary(tidyterra)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggplot2)\nlibrary(signal)\n\nHyperspectral data gets quite large. It is a good practice to process data stored on an SSD drive separate from your Operating System (OS). While data is stored on a separate drive, it is beneficial to instruct {terra} to store temporary data on a separate drive, too. Adjust this according to your OS. Here, we are using a non-system drive on Windows 11. We set the maximum allowed RAM to a high value of 0.9. It would be best to decide according to the available memory and OS requirements.\n\n# Set tempdir\nterra::terraOptions(tempdir = \"D:/\", memmax = 0.9)",
+    "text": "1.2 Startup\nStart by loading all necessary packages{HSItools} will load essential functions from the namespace, but to be sure, call all packages.\n\n# Load packages\nlibrary(HSItools)\nlibrary(terra)\nlibrary(tidyterra)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggplot2)\nlibrary(signal)\nlibrary(sf)\n\nHyperspectral data gets quite large. It is a good practice to process data stored on an SSD drive separate from your Operating System (OS). While data is stored on a separate drive, it is beneficial to instruct {terra} to store temporary data on a separate drive, too. Adjust this according to your OS. Here, we are using a non-system drive on Windows 11. We set the maximum allowed RAM to a high value of 0.9. It would be best to decide according to the available memory and OS requirements.\n\n# Set tempdir\nterra::terraOptions(tempdir = \"D:/\", memmax = 0.9)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Initial state</span>"
     ]
@@ -114,7 +114,27 @@
     "href": "preprocessing.html#normalization",
     "title": "3  Preprocessing",
     "section": "",
-    "text": "3.1.1 Normalization with Shiny output\nIf Shiny GUI was used for data selection, cropping, and calibration, then it is easy to pass the output of Shiny to the normalization routine. The normalized file or files will be written into your data’s products directory.\n\n# Create normalized reflectance file\n1reflectance &lt;- hsi_tools_core |&gt;\n2  HSItools::prepare_core()\n\n\n1\n\nThe Shiny GUI output.\n\n2\n\nNormalization function.\n\n\n\n\nIt is possible to iterate over multiple directories at once using the {purrr} package.\n\n\n3.1.2 Normalization of the directory (no Shiny output)\nIf no Shiny output is available and input is not produced by hand, the normalization routine can be run without it. In such a case, the entire capture data will be normalized. However, without Shiny output, it is harder to calibrate distances properly.\n\n# Create normalized reflectance file\nreflectance &lt;- hsi_tools_core |&gt;\n  HSItools::prepare_core()\n\nIt is possible to iterate over multiple directories at once using the {purrr} package.",
+    "text": "3.1.1 Normalization with Shiny output\nIf Shiny GUI was used for data selection, cropping, and calibration, then it would be easy to pass Shiny’s output to the normalization routine. The normalized files will be written into your data’s products directory.\n\n# Create normalized reflectance file\n1reflectance &lt;- hsi_tools_core |&gt;\n2  HSItools::prepare_core()\n\n\n1\n\nThe Shiny GUI output.\n\n2\n\nNormalization function.\n\n\n\n\nIt is possible to iterate over multiple directories at once using the {purrr} package.\n\n\n3.1.2 Normalization of the directory (no Shiny output)\nIf no Shiny output is available and input is not produced by hand, the normalization routine can be run without it. In such a case, the entire capture data will be normalized. However, without Shiny output, it is harder to calibrate distances properly.\n\n# Create normalized reflectance file\nreflectance &lt;- hsi_tools_core |&gt;\n  HSItools::prepare_core()\n\nIt is possible to iterate over multiple directories at once using the {purrr} package.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "preprocessing.html#savitzky-golay-smoothing",
+    "href": "preprocessing.html#savitzky-golay-smoothing",
+    "title": "3  Preprocessing",
+    "section": "3.2 Savitzky-Golay smoothing",
+    "text": "3.2 Savitzky-Golay smoothing\nApplying spectral smoothing, such as the Savitzky-Golay spectral filter (Savitzky and Golay 1964), is a good idea. This way, spurious, random peaks and throughs do not significantly influence the calculation results.\n\n1reflectance &lt;- reflectance |&gt;\n  # Specify the file extension\n2  HSItools::filter_savgol()\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preprocessing</span>"
+    ]
+  },
+  {
+    "objectID": "preprocessing.html#continuum-removal",
+    "href": "preprocessing.html#continuum-removal",
+    "title": "3  Preprocessing",
+    "section": "3.3 Continuum removal",
+    "text": "3.3 Continuum removal\nWe can process our data further by removing the continuum, which follows the rule of dividing the spectrum by its bounding box. This way, the spectrum becomes flatter.\n\n1reflectance_cr &lt;- reflectance |&gt;\n2  HSItools::remove_continuum()\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preprocessing</span>"
     ]
@@ -154,17 +174,17 @@
     "href": "indices.html#relative-absorption-band-depth-rabd",
     "title": "5  Indices",
     "section": "5.2 Relative Absorption Band Depth (RABD)",
-    "text": "5.2 Relative Absorption Band Depth (RABD)\nA common index which\nThe RABD calculation has variations, but the results are generally not drastically different. You can use predefined values or provide them manually.\nThe output’s name informs you about the calculated proxy and additional modifications to the reflectance file; here, we see that it was calculated with Savitzky-Golay smoothed reflectance. Let’s calculate one of the most common indices to estimate the total chloropigments-a: RABD660:670.\n\n5.2.1 Variant 1 – “max”\nIn this variant, a minimum reflectance is found in the trough for each pixel and flexibly used for calculations.\n\n1rabd_max &lt;- reflectance |&gt;\n2  HSItools::calculate_rabd(\n3    edges = proxies$rabd_b660b670$edges,\n4    trough = c(660:670),\n5    rabd_name = proxies$rabd_b660b670$proxy_name,\n6    rabd_type = \"max\")\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nEdges of the trough, the broader scope.\n\n4\n\nTrough of interest, a narrower scope to find the reflectance value.\n\n5\n\nName of the index to be stored in the raster data.\n\n6\n\nType of the RABD calculation.\n\n\n\n\n\n\n5.2.2 Variant 2 – “strict”\nThis classic variant supplies a specific wavelength to calculate RABD for every pixel.\n\nrabd_strict &lt;- reflectance |&gt;\n  HSItools::calculate_rabd(\n    edges = proxies$rabd_b660b670$edges,\n    trough = proxies$rabd_b660b670$trough,\n    rabd_name = proxies$rabd_b660b670$proxy_name,\n    rabd_type = \"strict\")\n\n\n\n5.2.3 Variant 3 – “midpoint”\nThis is variant 2 (strict), with the added shortcut of always finding the middle point between the through edges - a convenience shortcut for some.\n\nrabd_midpoint &lt;- reflectance |&gt;\n  HSItools::calculate_rabd(\n    edges = proxies$rabd_b660b670$edges,\n    trough = proxies$rabd_b660b670$trough,\n    rabd_name = proxies$rabd_b660b670$proxy_name,\n    rabd_type = \"mid\")",
+    "text": "5.2 Relative Absorption Band Depth (RABD)\nA common index which\nThe RABD calculation has variations, but the results are generally not drastically different. You can use predefined values or provide them manually.\nThe output’s name informs you about the calculated proxy and additional modifications to the reflectance file; here, we calculated it with Savitzky-Golay smoothed reflectance. Let’s calculate one of the most common indices to estimate the total chloropigments-a: RABD660:670.\n\n5.2.1 Variant 1 – “max”\nIn this variant, a minimum reflectance is found in the trough for each pixel and flexibly used for calculations.\n\n1rabd_max &lt;- reflectance |&gt;\n2  HSItools::calculate_rabd(\n3    edges = proxies$rabd_b660b670$edges,\n4    trough = c(660:670),\n5    rabd_name = proxies$rabd_b660b670$proxy_name,\n6    rabd_type = \"max\")\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nEdges of the trough, the broader scope.\n\n4\n\nTrough of interest, a narrower scope to find the reflectance value.\n\n5\n\nName of the index to be stored in the raster data.\n\n6\n\nType of the RABD calculation.\n\n\n\n\n\n\n5.2.2 Variant 2 – “strict”\nThis classic variant supplies a specific wavelength to calculate RABD for every pixel. Therefore, it is RABD665.\n\nrabd_strict &lt;- reflectance |&gt;\n  HSItools::calculate_rabd(\n    edges = proxies$rabd_b660b670$edges,\n    trough = 665,\n    rabd_name = proxies$rabd_b660b670$proxy_name,\n    rabd_type = \"strict\")\n\n\n\n5.2.3 Variant 3 – “midpoint”\nThis is variant 2 (strict), with the added shortcut of always finding the middle point between the through edges—a convenience shortcut for some. Here, it equals RABD665.\n\nrabd_midpoint &lt;- reflectance |&gt;\n  HSItools::calculate_rabd(\n    edges = proxies$rabd_b660b670$edges,\n    trough = c(660:670),\n    rabd_name = proxies$rabd_b660b670$proxy_name,\n    rabd_type = \"mid\")",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
   },
   {
-    "objectID": "indices.html#relative-absorption-band-area",
-    "href": "indices.html#relative-absorption-band-area",
+    "objectID": "indices.html#relative-absorption-band-area---todo",
+    "href": "indices.html#relative-absorption-band-area---todo",
     "title": "5  Indices",
-    "section": "5.3 Relative Absorption Band Area",
-    "text": "5.3 Relative Absorption Band Area",
+    "section": "5.3 Relative Absorption Band Area - ToDo",
+    "text": "5.3 Relative Absorption Band Area - ToDo\n\n1raba &lt;- reflectance |&gt;\n2  HSItools::calculate_raba(\n3    edges = proxies$rabd_b660b670$edges,\n4    trough = c(660:670),\n5    rabd_name = proxies$rabd_b660b670$proxy_name,\n6    rabd_type = \"mid\")\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nEdges of the trough, the broader scope.\n\n4\n\nTrough of interest, a narrower scope to find the reflectance value.\n\n5\n\nName of the index to be stored in the raster data.\n\n6\n\nType of the RABD calculation.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
@@ -180,11 +200,11 @@
     ]
   },
   {
-    "objectID": "indices.html#derivatives",
-    "href": "indices.html#derivatives",
+    "objectID": "indices.html#derivatives---todo",
+    "href": "indices.html#derivatives---todo",
     "title": "5  Indices",
-    "section": "5.5 Derivatives",
-    "text": "5.5 Derivatives",
+    "section": "5.5 Derivatives - ToDo",
+    "text": "5.5 Derivatives - ToDo\nAnother popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.\n\n1derivative_550 &lt;- reflectance |&gt;\n2  HSItools::calculate_derivative(\n3    edges = proxies$ratio_b570b630$edges,\n4    ratio_name = proxies$ratio_b570b630$proxy_name)\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nWavelength of choice.\n\n4\n\nName of the index to be stored in the raster data.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
@@ -204,7 +224,7 @@
     "href": "indices.html#other",
     "title": "5  Indices",
     "section": "5.7 Other",
-    "text": "5.7 Other\n\n5.7.1 λ Red Edge Minimum Point (λREMP)\nThis index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.\n\nremp &lt;- reflectance |&gt;\n  HSItools::calculate_remp()",
+    "text": "5.7 Other\n\n5.7.1 λ Red Edge Minimum Point (λREMP) - ToDo\nThis index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.\n\n1remp &lt;- reflectance |&gt;\n2  HSItools::calculate_remp()\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]

@@ -215,6 +215,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#normalization-with-shiny-output" id="toc-normalization-with-shiny-output" class="nav-link" data-scroll-target="#normalization-with-shiny-output"><span class="header-section-number">3.1.1</span> Normalization with Shiny output</a></li>
   <li><a href="#normalization-of-the-directory-no-shiny-output" id="toc-normalization-of-the-directory-no-shiny-output" class="nav-link" data-scroll-target="#normalization-of-the-directory-no-shiny-output"><span class="header-section-number">3.1.2</span> Normalization of the directory (no Shiny output)</a></li>
   </ul></li>
+  <li><a href="#savitzky-golay-smoothing" id="toc-savitzky-golay-smoothing" class="nav-link" data-scroll-target="#savitzky-golay-smoothing"><span class="header-section-number">3.2</span> Savitzky-Golay smoothing</a></li>
+  <li><a href="#continuum-removal" id="toc-continuum-removal" class="nav-link" data-scroll-target="#continuum-removal"><span class="header-section-number">3.3</span> Continuum removal</a></li>
   </ul>
 </nav>
     </div>
@@ -247,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Which can be modified for different acquisition setups for references:</p>
 <section id="normalization-with-shiny-output" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="normalization-with-shiny-output"><span class="header-section-number">3.1.1</span> Normalization with Shiny output</h3>
-<p>If Shiny GUI was used for data selection, cropping, and calibration, then it is easy to pass the output of Shiny to the normalization routine. The normalized file or files will be written into your data’s products directory.</p>
+<p>If Shiny GUI was used for data selection, cropping, and calibration, then it would be easy to pass Shiny’s output to the normalization routine. The normalized files will be written into your data’s products directory.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create normalized reflectance file</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>reflectance <span class="ot">&lt;-</span> hsi_tools_core <span class="sc">|&gt;</span></span>
@@ -276,9 +278,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">prepare_core</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It is possible to iterate over multiple directories at once using the <code>{purrr}</code> package.</p>
-
-
 </section>
+</section>
+<section id="savitzky-golay-smoothing" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="savitzky-golay-smoothing"><span class="header-section-number">3.2</span> Savitzky-Golay smoothing</h2>
+<p>Applying spectral smoothing, such as the Savitzky-Golay spectral filter (Savitzky and Golay 1964), is a good idea. This way, spurious, random peaks and throughs do not significantly influence the calculation results.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>reflectance <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Specify the file extension</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">filter_savgol</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1">Reflectance data is either in memory or from a disk.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="2">Calculation function.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="continuum-removal" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="continuum-removal"><span class="header-section-number">3.3</span> Continuum removal</h2>
+<p>We can process our data further by removing the continuum, which follows the rule of dividing the spectrum by its bounding box. This way, the spectrum becomes flatter.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a>reflectance_cr <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">remove_continuum</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1">Reflectance data is either in memory or from a disk.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="2" data-code-annotation="2">Calculation function.</span>
+</dd>
+</dl>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

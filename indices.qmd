@@ -22,7 +22,7 @@ A common index which
 
 The RABD calculation has variations, but the results are generally not drastically different. You can use predefined values or provide them manually.
 
-The output's name informs you about the calculated proxy and additional modifications to the reflectance file; here, we see that it was calculated with Savitzky-Golay smoothed reflectance. Let’s calculate one of the most common indices to estimate the total chloropigments-*a*: RABD~660:670~.
+The output's name informs you about the calculated proxy and additional modifications to the reflectance file; here, we calculated it with Savitzky-Golay smoothed reflectance. Let’s calculate one of the most common indices to estimate the total chloropigments-*a*: RABD~660:670~.
 
 ### Variant 1 – "max"
 
@@ -48,7 +48,7 @@ rabd_max <- reflectance |> #<1>
 
 ### Variant 2 – "strict"
 
-This classic variant supplies a specific wavelength to calculate RABD for every pixel.
+This classic variant supplies a specific wavelength to calculate RABD for every pixel. Therefore, it is RABD~665~.
 
 ```{r}
 #| eval: false
@@ -56,14 +56,14 @@ This classic variant supplies a specific wavelength to calculate RABD for every 
 rabd_strict <- reflectance |>
   HSItools::calculate_rabd(
     edges = proxies$rabd_b660b670$edges,
-    trough = proxies$rabd_b660b670$trough,
+    trough = 665,
     rabd_name = proxies$rabd_b660b670$proxy_name,
     rabd_type = "strict")
 ```
 
 ### Variant 3 – "midpoint"
 
-This is variant 2 (strict), with the added shortcut of always finding the middle point between the through edges - a convenience shortcut for some.
+This is variant 2 (strict), with the added shortcut of always finding the middle point between the through edges—a convenience shortcut for some. Here, it equals RABD~665~.
 
 ```{r}
 #| eval: false
@@ -71,12 +71,30 @@ This is variant 2 (strict), with the added shortcut of always finding the middle
 rabd_midpoint <- reflectance |> #<1>
   HSItools::calculate_rabd( #<2>
     edges = proxies$rabd_b660b670$edges, #<3>
-    trough = proxies$rabd_b660b670$trough, #<4>
+    trough = c(660:670), #<4>
     rabd_name = proxies$rabd_b660b670$proxy_name, #<5>
     rabd_type = "mid") #<6>
 ```
 
-## Relative Absorption Band Area
+## Relative Absorption Band Area - ToDo
+
+```{r}
+#| eval: false
+
+raba <- reflectance |> #<1>
+  HSItools::calculate_raba( #<2>
+    edges = proxies$rabd_b660b670$edges, #<3>
+    trough = c(660:670), #<4>
+    rabd_name = proxies$rabd_b660b670$proxy_name, #<5>
+    rabd_type = "mid") #<6>
+```
+
+1.  Reflectance data is either in memory or from a disk.
+2.  Calculation function.
+3.  Edges of the trough, the broader scope.
+4.  Trough of interest, a narrower scope to find the reflectance value.
+5.  Name of the index to be stored in the raster data.
+6.  Type of the RABD calculation.
 
 ## Spectral ratios
 
@@ -96,7 +114,23 @@ ratio_570630 <- reflectance |> #<1>
 3.  Wavelength X and Y, numerator and denominator.
 4.  Name of the index to be stored in the raster data.
 
-## Derivatives
+## Derivatives - ToDo
+
+Another popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.
+
+```{r}
+#| eval: false
+
+derivative_550 <- reflectance |> #<1>
+  HSItools::calculate_derivative( #<2>
+    edges = proxies$ratio_b570b630$edges, #<3>
+    ratio_name = proxies$ratio_b570b630$proxy_name) #<4>
+```
+
+1.  Reflectance data is either in memory or from a disk.
+2.  Calculation function.
+3.  Wavelength of choice.
+4.  Name of the index to be stored in the raster data.
 
 ## Differences
 
@@ -116,7 +150,7 @@ difference_650675 <- reflectance |> #<1>
 
 ## Other
 
-### λ Red Edge Minimum Point (λREMP)
+### λ Red Edge Minimum Point (λREMP) - ToDo
 
 This index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.
 
@@ -126,3 +160,6 @@ This index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Ea
 remp <- reflectance |> #<1>
   HSItools::calculate_remp() #<2>
 ```
+
+1.  Reflectance data is either in memory or from a disk.
+2.  Calculation function.
