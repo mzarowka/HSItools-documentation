@@ -78,6 +78,12 @@ rabd_midpoint <- reflectance |> #<1>
 
 ## Relative Absorption Band Area - ToDo
 
+::: callout-warning
+## ToDo
+
+This is a feature yet to be added.
+:::
+
 ```{r}
 #| eval: false
 
@@ -116,6 +122,12 @@ ratio_570630 <- reflectance |> #<1>
 
 ## Derivatives - ToDo
 
+::: callout-warning
+## ToDo
+
+This is a feature yet to be added.
+:::
+
 Another popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.
 
 ```{r}
@@ -151,6 +163,12 @@ difference_650675 <- reflectance |> #<1>
 ## Other
 
 ### λ Red Edge Minimum Point (λREMP) - ToDo
+
+::: callout-warning
+## ToDo
+
+This is a feature yet to be added.
+:::
 
 This index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.
 

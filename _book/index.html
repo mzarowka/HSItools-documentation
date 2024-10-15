@@ -213,6 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
   <ul class="collapse">
   <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#qgis" id="toc-qgis" class="nav-link" data-scroll-target="#qgis">QGIS</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -258,7 +259,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>R: &gt;= 4.1.0 is necessary because we depend on the native R pipe and lambda functions introduced with R 4.1.0.</li>
 <li>Rtools (on Windows): &gt;= 4.0 <a href="https://cran.r-project.org/bin/windows/Rtools/rtools40.html" title="Rtools on CRAN">[link]</a></li>
+<li>QGIS (optionally but heavily encouraged): <a href="https://www.qgis.org" title="https://www.qgis.org">[link]</a></li>
 </ul>
+<p>These downloads and installation take some time, depending on the Internet speed and your Operating System.</p>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>{HSItools} is currently in development and available only from GitHub.</p>
@@ -299,6 +302,11 @@ Terra
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install older version from CRAN</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"terra@1.7-78"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="qgis" class="level2">
+<h2 class="anchored" data-anchor-id="qgis">QGIS</h2>
+<p>In our workflow we delegate some of the work to GIS environment, especially marking the raster files, selecting regions and so on. We strongly suggest an Open Source tool like QGIS, however any GIS software, such as ESRI ArcGIS Pro should suffice.</p>
+<p>You can find the latest version of QGIS here: <a href="https://www.qgis.org" class="uri">https://www.qgis.org</a></p>
 
 
 </section>

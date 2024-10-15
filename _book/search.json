@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "HSItools documentation",
     "section": "",
-    "text": "Preface\nThis is a companion book to the HSItools R package, aiming at processing and visualizing hyperspectral scanning data.\nMaurycy Żarczyński, David C. Edge, Nick P. McKay, and Paul D. Zander developed the package with the community’s help.\nThe current requirements to run HSItools are as follows:",
+    "text": "Preface\nThis is a companion book to the HSItools R package, aiming at processing and visualizing hyperspectral scanning data.\nMaurycy Żarczyński, David C. Edge, Nick P. McKay, and Paul D. Zander developed the package with the community’s help.\nThe current requirements to run HSItools are as follows:\nThese downloads and installation take some time, depending on the Internet speed and your Operating System.",
     "crumbs": [
       "Preface"
     ]
@@ -15,6 +15,16 @@
     "title": "HSItools documentation",
     "section": "Installation",
     "text": "Installation\n{HSItools} is currently in development and available only from GitHub.\n\n\n\n\n\n\nPackage installation\n\n\n\nWe are using {pak} for installation from remote sources.\n\n\n\n# Install pak if necessary\ninstall.packages(\"pak\")\n\n# Install HSItools\npak::pak(\"mzarowka/HSItools\")\n\n\n\n\n\n\n\nTerra\n\n\n\nBecause the latest version of {terra}, which does most of the raster heavy-lifting, has a bug resulting in flipped images, we must install older version.\n\n\n\n# Install older version from CRAN\npak::pak(\"terra@1.7-78\")",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#qgis",
+    "href": "index.html#qgis",
+    "title": "HSItools documentation",
+    "section": "QGIS",
+    "text": "QGIS\nIn our workflow we delegate some of the work to GIS environment, especially marking the raster files, selecting regions and so on. We strongly suggest an Open Source tool like QGIS, however any GIS software, such as ESRI ArcGIS Pro should suffice.\nYou can find the latest version of QGIS here: https://www.qgis.org",
     "crumbs": [
       "Preface"
     ]
@@ -114,7 +124,7 @@
     "href": "preprocessing.html#normalization",
     "title": "3  Preprocessing",
     "section": "",
-    "text": "3.1.1 Normalization with Shiny output\nIf Shiny GUI was used for data selection, cropping, and calibration, then it would be easy to pass Shiny’s output to the normalization routine. The normalized files will be written into your data’s products directory.\n\n# Create normalized reflectance file\n1reflectance &lt;- hsi_tools_core |&gt;\n2  HSItools::prepare_core()\n\n\n1\n\nThe Shiny GUI output.\n\n2\n\nNormalization function.\n\n\n\n\nIt is possible to iterate over multiple directories at once using the {purrr} package.\n\n\n3.1.2 Normalization of the directory (no Shiny output)\nIf no Shiny output is available and input is not produced by hand, the normalization routine can be run without it. In such a case, the entire capture data will be normalized. However, without Shiny output, it is harder to calibrate distances properly.\n\n# Create normalized reflectance file\nreflectance &lt;- hsi_tools_core |&gt;\n  HSItools::prepare_core()\n\nIt is possible to iterate over multiple directories at once using the {purrr} package.",
+    "text": "3.1.1 Normalization with Shiny output\nIf Shiny GUI was used for data selection, cropping, and calibration, then it would be easy to pass Shiny’s output to the normalization routine. The normalized files will be written into your data’s products directory.\n\n# Create normalized reflectance file\n1reflectance &lt;- hsi_tools_core |&gt;\n2  HSItools::prepare_core()\n\n\n1\n\nThe Shiny GUI output.\n\n2\n\nNormalization function.\n\n\n\n\nIt is possible to iterate over multiple directories at once using the {purrr} package.\n\n\n3.1.2 Normalization of the directory (no Shiny output)\n\n\n\n\n\n\nToDo\n\n\n\nThis is a feature yet to be added.\n\n\nIf no Shiny output is available and input is not produced by hand, the normalization routine can be run without it. In such a case, the entire capture data will be normalized. However, without Shiny output, it is harder to calibrate distances properly.\n\n# Create normalized reflectance file\nreflectance &lt;- hsi_tools_core |&gt;\n  HSItools::prepare_core()\n\nIt is possible to iterate over multiple directories at once using the {purrr} package.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preprocessing</span>"
     ]
@@ -134,7 +144,7 @@
     "href": "preprocessing.html#continuum-removal",
     "title": "3  Preprocessing",
     "section": "3.3 Continuum removal",
-    "text": "3.3 Continuum removal\nWe can process our data further by removing the continuum, which follows the rule of dividing the spectrum by its bounding box. This way, the spectrum becomes flatter.\n\n1reflectance_cr &lt;- reflectance |&gt;\n2  HSItools::remove_continuum()\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.",
+    "text": "3.3 Continuum removal\n\n\n\n\n\n\nToDo\n\n\n\nThis is a feature that got broken.\n\n\nWe can process our data further by removing the continuum, which follows the rule of dividing the spectrum by its bounding box. This way, the spectrum becomes flatter.\n\n1reflectance_cr &lt;- reflectance |&gt;\n2  HSItools::remove_continuum()\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Preprocessing</span>"
     ]
@@ -184,7 +194,7 @@
     "href": "indices.html#relative-absorption-band-area---todo",
     "title": "5  Indices",
     "section": "5.3 Relative Absorption Band Area - ToDo",
-    "text": "5.3 Relative Absorption Band Area - ToDo\n\n1raba &lt;- reflectance |&gt;\n2  HSItools::calculate_raba(\n3    edges = proxies$rabd_b660b670$edges,\n4    trough = c(660:670),\n5    rabd_name = proxies$rabd_b660b670$proxy_name,\n6    rabd_type = \"mid\")\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nEdges of the trough, the broader scope.\n\n4\n\nTrough of interest, a narrower scope to find the reflectance value.\n\n5\n\nName of the index to be stored in the raster data.\n\n6\n\nType of the RABD calculation.",
+    "text": "5.3 Relative Absorption Band Area - ToDo\n\n\n\n\n\n\nToDo\n\n\n\nThis is a feature yet to be added.\n\n\n\n1raba &lt;- reflectance |&gt;\n2  HSItools::calculate_raba(\n3    edges = proxies$rabd_b660b670$edges,\n4    trough = c(660:670),\n5    rabd_name = proxies$rabd_b660b670$proxy_name,\n6    rabd_type = \"mid\")\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nEdges of the trough, the broader scope.\n\n4\n\nTrough of interest, a narrower scope to find the reflectance value.\n\n5\n\nName of the index to be stored in the raster data.\n\n6\n\nType of the RABD calculation.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
@@ -204,7 +214,7 @@
     "href": "indices.html#derivatives---todo",
     "title": "5  Indices",
     "section": "5.5 Derivatives - ToDo",
-    "text": "5.5 Derivatives - ToDo\nAnother popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.\n\n1derivative_550 &lt;- reflectance |&gt;\n2  HSItools::calculate_derivative(\n3    edges = proxies$ratio_b570b630$edges,\n4    ratio_name = proxies$ratio_b570b630$proxy_name)\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nWavelength of choice.\n\n4\n\nName of the index to be stored in the raster data.",
+    "text": "5.5 Derivatives - ToDo\n\n\n\n\n\n\nToDo\n\n\n\nThis is a feature yet to be added.\n\n\nAnother popular and straightforward index is band ratios, where reflectance at wavelength X is divided by reflectance at wavelength Y.\n\n1derivative_550 &lt;- reflectance |&gt;\n2  HSItools::calculate_derivative(\n3    edges = proxies$ratio_b570b630$edges,\n4    ratio_name = proxies$ratio_b570b630$proxy_name)\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.\n\n3\n\nWavelength of choice.\n\n4\n\nName of the index to be stored in the raster data.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
@@ -224,9 +234,49 @@
     "href": "indices.html#other",
     "title": "5  Indices",
     "section": "5.7 Other",
-    "text": "5.7 Other\n\n5.7.1 λ Red Edge Minimum Point (λREMP) - ToDo\nThis index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.\n\n1remp &lt;- reflectance |&gt;\n2  HSItools::calculate_remp()\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.",
+    "text": "5.7 Other\n\n5.7.1 λ Red Edge Minimum Point (λREMP) - ToDo\n\n\n\n\n\n\nToDo\n\n\n\nThis is a feature yet to be added.\n\n\nThis index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Eaves, I., Antoniades, D., 2023. A new index for the rapid generation of chlorophyll time series from hyperspectral imaging of sediment cores. Limnology and Oceanography: Methods 21, 703–717.\n\n1remp &lt;- reflectance |&gt;\n2  HSItools::calculate_remp()\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\nCalculation function.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
+    ]
+  },
+  {
+    "objectID": "visualizing.html",
+    "href": "visualizing.html",
+    "title": "6  Visualizing the data",
+    "section": "",
+    "text": "6.1 RGB preview",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualizing the data</span>"
+    ]
+  },
+  {
+    "objectID": "visualizing.html#index-map",
+    "href": "visualizing.html#index-map",
+    "title": "6  Visualizing the data",
+    "section": "6.2 Index map",
+    "text": "6.2 Index map",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualizing the data</span>"
+    ]
+  },
+  {
+    "objectID": "visualizing.html#index-plot",
+    "href": "visualizing.html#index-plot",
+    "title": "6  Visualizing the data",
+    "section": "6.3 Index plot",
+    "text": "6.3 Index plot",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualizing the data</span>"
+    ]
+  },
+  {
+    "objectID": "visualizing.html#spectrum-plot",
+    "href": "visualizing.html#spectrum-plot",
+    "title": "6  Visualizing the data",
+    "section": "6.4 Spectrum plot",
+    "text": "6.4 Spectrum plot",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualizing the data</span>"
     ]
   },
   {

@@ -1,1 +1,9 @@
 # Visualizing the data
+
+## RGB preview
+
+## Index map
+
+## Index plot
+
+## Spectrum plot

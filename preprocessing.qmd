@@ -28,6 +28,12 @@ It is possible to iterate over multiple directories at once using the `{purrr}` 
 
 ### Normalization of the directory (no Shiny output)
 
+::: callout-warning
+## ToDo
+
+This is a feature yet to be added.
+:::
+
 If no Shiny output is available and input is not produced by hand, the normalization routine can be run without it. In such a case, the entire capture data will be normalized. However, without Shiny output, it is harder to calibrate distances properly.
 
 ```{r}
@@ -57,6 +63,12 @@ reflectance <- reflectance |> #<1>
 2.  Calculation function.
 
 ## Continuum removal
+
+::: callout-warning
+## ToDo
+
+This is a feature that got broken.
+:::
 
 We can process our data further by removing the continuum, which follows the rule of dividing the spectrum by its bounding box. This way, the spectrum becomes flatter.
 
