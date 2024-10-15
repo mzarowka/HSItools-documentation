@@ -30,3 +30,16 @@ install.packages("pak")
 # Install HSItools
 pak::pak("mzarowka/HSItools")
 ```
+
+::: callout-important
+## Terra
+
+Because the latest version of {terra}, which does most of the raster heavy-lifting, has a bug resulting in flipped images, we must install older version.
+:::
+
+```{r}
+#| eval: false
+
+# Install older version from CRAN
+pak::pak("terra@1.7-78")
+```

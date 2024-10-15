@@ -14,7 +14,7 @@
     "href": "index.html#installation",
     "title": "HSItools documentation",
     "section": "Installation",
-    "text": "Installation\n{HSItools} is currently in development and available only from GitHub.\n\n\n\n\n\n\nPackage installation\n\n\n\nWe are using {pak} for installation from remote sources.\n\n\n\n# Install pak if necessary\ninstall.packages(\"pak\")\n\n# Install HSItools\npak::pak(\"mzarowka/HSItools\")",
+    "text": "Installation\n{HSItools} is currently in development and available only from GitHub.\n\n\n\n\n\n\nPackage installation\n\n\n\nWe are using {pak} for installation from remote sources.\n\n\n\n# Install pak if necessary\ninstall.packages(\"pak\")\n\n# Install HSItools\npak::pak(\"mzarowka/HSItools\")\n\n\n\n\n\n\n\nTerra\n\n\n\nBecause the latest version of {terra}, which does most of the raster heavy-lifting, has a bug resulting in flipped images, we must install older version.\n\n\n\n# Install older version from CRAN\npak::pak(\"terra@1.7-78\")",
     "crumbs": [
       "Preface"
     ]

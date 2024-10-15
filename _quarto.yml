@@ -4,7 +4,6 @@ project:
 book:
   title: "HSItools documentation"
   author: "Maurycy Żarczyński"
-  date: "`r Sys.time()`"
   chapters:
     - index.qmd
     - intro.qmd
@@ -21,7 +20,7 @@ bibliography: references.bib
 
 format:
   html:
-    theme: flatly
+    theme: sandstone
   pdf:
     documentclass: scrreprt
 
