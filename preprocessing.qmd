@@ -36,15 +36,44 @@ This is a feature yet to be added.
 
 If no Shiny output is available and input is not produced by hand, the normalization routine can be run without it. In such a case, the entire capture data will be normalized. However, without Shiny output, it is harder to calibrate distances properly.
 
+Here we normalize entire captured data, with all the available layers.
+
 ```{r}
 #| eval: false
 
+# Store the path
+path <- "data/my_core"
+
 # Create normalized reflectance file
-reflectance <- hsi_tools_core |>
-  HSItools::prepare_core()
+reflectance <- path |> #<1>
+  HSItools::prepare_core(path = path, layers = c(400:1000), extent = "capture") #<2>
 ```
 
+1.  Path to your core of choice, root directory. Don't go to the "capture" directory.
+2.  Normalization function. Path is your core path, then selection of layers (bands) and an explicit call informing that the entire capture extent should be normalized.
+
 It is possible to iterate over multiple directories at once using the `{purrr}` package.
+
+```{r}
+#| eval: false
+
+# Store the paths
+paths <- list( #<1>
+  core_1 = "data/my_core_1",
+  core_2 = "data/my_core_2")
+
+# Or easier, with listing
+paths <- fs::dir_ls("data") #<2>
+
+# Create normalized reflectance files
+reflectance <- paths |> #<3>
+  purrr::map(\(i) HSItools::prepare_core(path = i, layers = c(400:1000), extent = "capture")) #<4>)
+```
+
+1.  Create list of directories by hand.
+2.  Or list root directories in your higher-level directory.
+3.  Your paths.
+4.  Normalization function iterated over multiple directories.
 
 ## Savitzky-Golay smoothing
 
