@@ -28,12 +28,6 @@ It is possible to iterate over multiple directories at once using the `{purrr}` 
 
 ### Normalization of the directory (no Shiny output)
 
-::: callout-warning
-## ToDo
-
-This is a feature yet to be added.
-:::
-
 If no Shiny output is available and input is not produced by hand, the normalization routine can be run without it. In such a case, the entire capture data will be normalized. However, without Shiny output, it is harder to calibrate distances properly.
 
 Here we normalize entire captured data, with all the available layers.
@@ -67,7 +61,10 @@ paths <- fs::dir_ls("data") #<2>
 
 # Create normalized reflectance files
 reflectance <- paths |> #<3>
-  purrr::map(\(i) HSItools::prepare_core(path = i, layers = c(400:1000), extent = "capture")) #<4>)
+  purrr::map(\(i) HSItools::prepare_core(
+    path = i,
+    layers = c(400:1000),
+    extent = "capture")) #<4>
 ```
 
 1.  Create list of directories by hand.
