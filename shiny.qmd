@@ -4,12 +4,74 @@ Our shiny app allows quick choice of data, settings, regions of interest (ROI), 
 
 ## Screen 1: Initial settings
 
-On this screen, you have to make an initial choice. First, you need to decide whether you need to normalize data or not. If you have a reflectance file from other software, like Lumo®, you probably do not need to normalize the file from the beginning. This is one of the most time-consuming processes. Suppose you decide that you need to normalize your data. In that case, you can select other integration times for your white and dark references if you scanned your target with different settings for target and references. This can happen if you were worried about white reference overexposure, whereas your target was very dark. Finally, you can select some proposed HSI indices from the defaults.
+On this screen, you have to make an initial choice. First, you need to decide whether to normalize data. If you have a reflectance file from other software, like Lumo®, you probably do not need to normalize the file from the beginning—this is one of the most time-consuming processes.
+
+Suppose you decide that you need to normalize your data. In that case, you can select other integration times for your white and dark references if you scanned your target with different settings for target and references. This can happen if you were worried about white reference overexposure, whereas your target was very dark. Finally, you can select some proposed HSI indices from the defaults.
+
+::: callout-note
+## Indices
+
+At the moment, selecting indices will not do anything in particular.
+:::
+
+![Shiny – first screen, basic options.](figures/shiny_1.png)
 
 ## Screen 2: Data choice
 
+This screen lets you decide whether to use your data or the provided example.
+
+![Shiny – data choice.](figures/shiny_2.png)
+
+You can select your data from your drive once you use it. Be sure that it is stored on the SSD drive. Here, it is essential that you do not go all the way to the capture folder but rather point to the root directory of your selected scan.
+
+![Shiny – data selection.](figures/shiny_3.png)
+
+Once you've selected data, you can choose the raster files, bypassing our heuristics and default search patterns in the "capture" directory. At this point, you'll also get some basic information on your raster dimensions.
+
+![Shiny – data selection continued.](figures/shiny_4.png)
+
+Once you're happy with your data choice, select layers (bands) to work with.
+
+![Shiny – data selection, layers.](figures/shiny_5.png)
+
+If you're happy with your choices, scroll down and proceed.
+
+![Shiny – data selection, finish.](figures/shiny_6.png)
+
 ## Screen 3: Cropping
+
+::: callout-important
+## Raster preview
+
+Some scans will look "bad" on this and the next screen. It is still your data. We're working on it! :)
+:::
+
+Here, you can crop your data (raster). You can see the bounding box of the cropped data. If it helps, you can change the size of the image. Leave a pixel or two on the edges; if pushed to the extremes, it can mess up the cropping. Once you're happy, accept the crop and proceed.
+
+![Shiny – cropping.](figures/shiny_7.png)
 
 ## Screen 4: ROI selection
 
+Here, you can select the regions of interest (ROI) you want to work over rather than calculating the entire data. These ROIs are strictly rectangular, so we prefer the GIS approach with masking. Please select the region, then add it using the button. Repeat for as many regions as you need. On the right, you have a zoom of your selection. Once you're happy with your ROIs, accept and proceed.
+
+![Shiny - ROIs selection.](figures/shiny_8.png)
+
 ## Screen 5: Calibration
+
+::: callout-important
+## RGB preview
+
+Here, the captured data looks as it should!
+:::
+
+Finally, it is time to calibrate your data.
+
+First, we calibrate the distance. Simply put, we want to know the actual distance in one pixel. For this, we use the tape measure and put the two markers. Then, we read the depth from the tape—the further the distance between the points, the better. We use only 20 mm, so it fits on the screen. Our equation takes into account both the distance and angle.
+
+![Shiny – depth calibration.](figures/shiny_10.png)
+
+Finally, we put in the second set of markers, which tracks the actual beginning and end of the scanned sample—the true-zero is essential here.
+
+![Shiny – true-zero calibration.](figures/shiny_11.png)
+
+Once you select both sets of markers, accept and exit the app.

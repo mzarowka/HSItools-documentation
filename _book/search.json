@@ -64,7 +64,17 @@
     "href": "shiny.html",
     "title": "2  Shiny app",
     "section": "",
-    "text": "2.1 Screen 1: Initial settings\nOn this screen, you have to make an initial choice. First, you need to decide whether you need to normalize data or not. If you have a reflectance file from other software, like Lumo®, you probably do not need to normalize the file from the beginning. This is one of the most time-consuming processes. Suppose you decide that you need to normalize your data. In that case, you can select other integration times for your white and dark references if you scanned your target with different settings for target and references. This can happen if you were worried about white reference overexposure, whereas your target was very dark. Finally, you can select some proposed HSI indices from the defaults.",
+    "text": "2.1 Screen 1: Initial settings\nOn this screen, you have to make an initial choice. First, you need to decide whether to normalize data. If you have a reflectance file from other software, like Lumo®, you probably do not need to normalize the file from the beginning—this is one of the most time-consuming processes.\nSuppose you decide that you need to normalize your data. In that case, you can select other integration times for your white and dark references if you scanned your target with different settings for target and references. This can happen if you were worried about white reference overexposure, whereas your target was very dark. Finally, you can select some proposed HSI indices from the defaults.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
+    ]
+  },
+  {
+    "objectID": "shiny.html#screen-1-initial-settings",
+    "href": "shiny.html#screen-1-initial-settings",
+    "title": "2  Shiny app",
+    "section": "",
+    "text": "Indices\n\n\n\nAt the moment, selecting indices will not do anything in particular.\n\n\n\n\n\nShiny – first screen, basic options.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
     ]
@@ -74,7 +84,7 @@
     "href": "shiny.html#screen-2-data-choice",
     "title": "2  Shiny app",
     "section": "2.2 Screen 2: Data choice",
-    "text": "2.2 Screen 2: Data choice",
+    "text": "2.2 Screen 2: Data choice\nThis screen lets you decide whether to use your data or the provided example.\n\n\n\nShiny – data choice.\n\n\nYou can select your data from your drive once you use it. Be sure that it is stored on the SSD drive. Here, it is essential that you do not go all the way to the capture folder but rather point to the root directory of your selected scan.\n\n\n\nShiny – data selection.\n\n\nOnce you’ve selected data, you can choose the raster files, bypassing our heuristics and default search patterns in the “capture” directory. At this point, you’ll also get some basic information on your raster dimensions.\n\n\n\nShiny – data selection continued.\n\n\nOnce you’re happy with your data choice, select layers (bands) to work with.\n\n\n\nShiny – data selection, layers.\n\n\nIf you’re happy with your choices, scroll down and proceed.\n\n\n\nShiny – data selection, finish.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
     ]
@@ -84,7 +94,7 @@
     "href": "shiny.html#screen-3-cropping",
     "title": "2  Shiny app",
     "section": "2.3 Screen 3: Cropping",
-    "text": "2.3 Screen 3: Cropping",
+    "text": "2.3 Screen 3: Cropping\n\n\n\n\n\n\nRaster preview\n\n\n\nSome scans will look “bad” on this and the next screen. It is still your data. We’re working on it! :)\n\n\nHere, you can crop your data (raster). You can see the bounding box of the cropped data. If it helps, you can change the size of the image. Leave a pixel or two on the edges; if pushed to the extremes, it can mess up the cropping. Once you’re happy, accept the crop and proceed.\n\n\n\nShiny – cropping.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
     ]
@@ -94,7 +104,7 @@
     "href": "shiny.html#screen-4-roi-selection",
     "title": "2  Shiny app",
     "section": "2.4 Screen 4: ROI selection",
-    "text": "2.4 Screen 4: ROI selection",
+    "text": "2.4 Screen 4: ROI selection\nHere, you can select the regions of interest (ROI) you want to work over rather than calculating the entire data. These ROIs are strictly rectangular, so we prefer the GIS approach with masking. Please select the region, then add it using the button. Repeat for as many regions as you need. On the right, you have a zoom of your selection. Once you’re happy with your ROIs, accept and proceed.\n\n\n\nShiny - ROIs selection.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
     ]
@@ -104,7 +114,7 @@
     "href": "shiny.html#screen-5-calibration",
     "title": "2  Shiny app",
     "section": "2.5 Screen 5: Calibration",
-    "text": "2.5 Screen 5: Calibration",
+    "text": "2.5 Screen 5: Calibration\n\n\n\n\n\n\nRGB preview\n\n\n\nHere, the captured data looks as it should!\n\n\nFinally, it is time to calibrate your data.\nFirst, we calibrate the distance. Simply put, we want to know the actual distance in one pixel. For this, we use the tape measure and put the two markers. Then, we read the depth from the tape—the further the distance between the points, the better. We use only 20 mm, so it fits on the screen. Our equation takes into account both the distance and angle.\n\n\n\nShiny – depth calibration.\n\n\nFinally, we put in the second set of markers, which tracks the actual beginning and end of the scanned sample—the true-zero is essential here.\n\n\n\nShiny – true-zero calibration.\n\n\nOnce you select both sets of markers, accept and exit the app.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
     ]

@@ -209,19 +209,130 @@ ul.task-list li input[type="checkbox"] {
 <p>Our shiny app allows quick choice of data, settings, regions of interest (ROI), and depth calibration. Here, we walk through the entire app, screen by screen.</p>
 <section id="screen-1-initial-settings" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="screen-1-initial-settings"><span class="header-section-number">2.1</span> Screen 1: Initial settings</h2>
-<p>On this screen, you have to make an initial choice. First, you need to decide whether you need to normalize data or not. If you have a reflectance file from other software, like Lumo®, you probably do not need to normalize the file from the beginning. This is one of the most time-consuming processes. Suppose you decide that you need to normalize your data. In that case, you can select other integration times for your white and dark references if you scanned your target with different settings for target and references. This can happen if you were worried about white reference overexposure, whereas your target was very dark. Finally, you can select some proposed HSI indices from the defaults.</p>
+<p>On this screen, you have to make an initial choice. First, you need to decide whether to normalize data. If you have a reflectance file from other software, like Lumo®, you probably do not need to normalize the file from the beginning—this is one of the most time-consuming processes.</p>
+<p>Suppose you decide that you need to normalize your data. In that case, you can select other integration times for your white and dark references if you scanned your target with different settings for target and references. This can happen if you were worried about white reference overexposure, whereas your target was very dark. Finally, you can select some proposed HSI indices from the defaults.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Indices
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At the moment, selecting indices will not do anything in particular.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/shiny_1.png" class="img-fluid figure-img"></p>
+<figcaption>Shiny – first screen, basic options.</figcaption>
+</figure>
+</div>
 </section>
 <section id="screen-2-data-choice" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="screen-2-data-choice"><span class="header-section-number">2.2</span> Screen 2: Data choice</h2>
+<p>This screen lets you decide whether to use your data or the provided example.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/shiny_2.png" class="img-fluid figure-img"></p>
+<figcaption>Shiny – data choice.</figcaption>
+</figure>
+</div>
+<p>You can select your data from your drive once you use it. Be sure that it is stored on the SSD drive. Here, it is essential that you do not go all the way to the capture folder but rather point to the root directory of your selected scan.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/shiny_3.png" class="img-fluid figure-img"></p>
+<figcaption>Shiny – data selection.</figcaption>
+</figure>
+</div>
+<p>Once you’ve selected data, you can choose the raster files, bypassing our heuristics and default search patterns in the “capture” directory. At this point, you’ll also get some basic information on your raster dimensions.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/shiny_4.png" class="img-fluid figure-img"></p>
+<figcaption>Shiny – data selection continued.</figcaption>
+</figure>
+</div>
+<p>Once you’re happy with your data choice, select layers (bands) to work with.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/shiny_5.png" class="img-fluid figure-img"></p>
+<figcaption>Shiny – data selection, layers.</figcaption>
+</figure>
+</div>
+<p>If you’re happy with your choices, scroll down and proceed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/shiny_6.png" class="img-fluid figure-img"></p>
+<figcaption>Shiny – data selection, finish.</figcaption>
+</figure>
+</div>
 </section>
 <section id="screen-3-cropping" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="screen-3-cropping"><span class="header-section-number">2.3</span> Screen 3: Cropping</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Raster preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some scans will look “bad” on this and the next screen. It is still your data. We’re working on it! :)</p>
+</div>
+</div>
+<p>Here, you can crop your data (raster). You can see the bounding box of the cropped data. If it helps, you can change the size of the image. Leave a pixel or two on the edges; if pushed to the extremes, it can mess up the cropping. Once you’re happy, accept the crop and proceed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/shiny_7.png" class="img-fluid figure-img"></p>
+<figcaption>Shiny – cropping.</figcaption>
+</figure>
+</div>
 </section>
 <section id="screen-4-roi-selection" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="screen-4-roi-selection"><span class="header-section-number">2.4</span> Screen 4: ROI selection</h2>
+<p>Here, you can select the regions of interest (ROI) you want to work over rather than calculating the entire data. These ROIs are strictly rectangular, so we prefer the GIS approach with masking. Please select the region, then add it using the button. Repeat for as many regions as you need. On the right, you have a zoom of your selection. Once you’re happy with your ROIs, accept and proceed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/shiny_8.png" class="img-fluid figure-img"></p>
+<figcaption>Shiny - ROIs selection.</figcaption>
+</figure>
+</div>
 </section>
 <section id="screen-5-calibration" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="screen-5-calibration"><span class="header-section-number">2.5</span> Screen 5: Calibration</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+RGB preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Here, the captured data looks as it should!</p>
+</div>
+</div>
+<p>Finally, it is time to calibrate your data.</p>
+<p>First, we calibrate the distance. Simply put, we want to know the actual distance in one pixel. For this, we use the tape measure and put the two markers. Then, we read the depth from the tape—the further the distance between the points, the better. We use only 20 mm, so it fits on the screen. Our equation takes into account both the distance and angle.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/shiny_10.png" class="img-fluid figure-img"></p>
+<figcaption>Shiny – depth calibration.</figcaption>
+</figure>
+</div>
+<p>Finally, we put in the second set of markers, which tracks the actual beginning and end of the scanned sample—the true-zero is essential here.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/shiny_11.png" class="img-fluid figure-img"></p>
+<figcaption>Shiny – true-zero calibration.</figcaption>
+</figure>
+</div>
+<p>Once you select both sets of markers, accept and exit the app.</p>
 
 
 </section>
