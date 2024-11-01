@@ -6,11 +6,46 @@ Before any spectral indices and properties are calculated, normalizing the data 
 
 Normalization is achieved by following the equation:
 
-Which can be modified for different acquisition setups for references:
+$$
+reflectance = (d_{raw} - dark_{ref})/(white_{ref} - dark_{ref})
+$$
+
+**where:**
+
+reflectance: normalized data cube;
+
+d~raw~: raw captured data;
+
+dark~ref~: dark reference data;
+
+white~ref~: white reference data.
+
+Which can be modified for different acquisition times for white reference:
+
+$$
+reflectance = (d_{raw} - dark_{ref})/(white_{ref} - dark_{ref}) * t_{int}white/t_{int}sample
+$$
+
+**where:**
+
+t~int~white: integration time of white reference;
+
+t~int~sample: integration time of captured data (sample).
 
 ### Normalization with Shiny output
 
 If Shiny GUI was used for data selection, cropping, and calibration, then it would be easy to pass Shiny's output to the normalization routine. The normalized files will be written into your data's products directory.
+
+First, this is specific only for workflow, where you'd like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R).
+
+```{r}
+#| eval: false
+
+# Set working direcotory
+setwd("path/to/my_core")
+```
+
+Then, use the standard function to calculate the reflectance.
 
 ```{r}
 #| eval: false
@@ -24,13 +59,17 @@ reflectance <- hsi_tools_core |> #<1>
 
 2.  Normalization function.
 
-It is possible to iterate over multiple directories at once using the `{purrr}` package.
+::: callout-note
+## Multiple cores
+
+It is planned to optionally iterate over multiple directories using, for example, the {purrr} package. This will need to get rid of setwd() call.
+:::
 
 ### Normalization of the directory (no Shiny output)
 
 If no Shiny output is available and input is not produced by hand, the normalization routine can be run without it. In such a case, the entire capture data will be normalized. However, without Shiny output, it is harder to calibrate distances properly.
 
-Here we normalize entire captured data, with all the available layers.
+Here, we normalize all the captured data with all the available layers between 400 and 1000 nm.
 
 ```{r}
 #| eval: false
@@ -44,7 +83,7 @@ reflectance <- path |> #<1>
 ```
 
 1.  Path to your core of choice, root directory. Don't go to the "capture" directory.
-2.  Normalization function. Path is your core path, then selection of layers (bands) and an explicit call informing that the entire capture extent should be normalized.
+2.  Normalization function. The path is your core path, then the selection of layers (bands) and an explicit call informing that the entire capture extent should be normalized.
 
 It is possible to iterate over multiple directories at once using the `{purrr}` package.
 
@@ -67,18 +106,17 @@ reflectance <- paths |> #<3>
     extent = "capture")) #<4>
 ```
 
-1.  Create list of directories by hand.
+1.  Create a list of directories by hand.
 2.  Or list root directories in your higher-level directory.
 3.  Your paths.
 4.  Normalization function iterated over multiple directories.
 
 ## Savitzky-Golay smoothing
 
-Applying spectral smoothing, such as the Savitzky-Golay spectral filter (Savitzky and Golay 1964), is a good idea. This way, spurious, random peaks and throughs do not significantly influence the calculation results.
+Applying spectral smoothing, such as the Savitzky-Golay spectral filter (Savitzky and Golay 1964), prevents spurious, random peaks and troughs from significantly influencing the calculation results.
 
 ```{r}
 #| eval: false
-
 
 reflectance <- reflectance |> #<1>
   # Specify the file extension
@@ -88,13 +126,34 @@ reflectance <- reflectance |> #<1>
 1.  Reflectance data is either in memory or from a disk.
 2.  Calculation function.
 
-## Continuum removal
+::: callout-note
+## Speed
 
-::: callout-warning
-## ToDo
-
-This is a feature that got broken.
+This function applies a smooth filter to every pixel. Depending on the size of your data, it will take considerable time to run.
 :::
+
+## Median filter
+
+You might be interested in smoothing your data spatially to remove some of the noise in the XY domain.
+
+```{r}
+#| eval: false
+
+reflectance <- reflectance |> #<1>
+  # Specify the file extension
+  HSItools::filter_median() #<2>
+```
+
+1.  Reflectance data is either in memory or from a disk.
+2.  Calculation function. You can set the window (defaults to 3 by 3).
+
+::: callout-note
+## Speed
+
+This function applies a focal median filter to every pixel. Depending on the size of your data, it will take considerable time to run. More than the Savitzky-Golay. Consider running it on the calculated index rasters and ROIs.
+:::
+
+## Continuum removal
 
 We can process our data further by removing the continuum, which follows the rule of dividing the spectrum by its bounding box. This way, the spectrum becomes flatter.
 
