@@ -59,6 +59,26 @@ reflectance <- hsi_tools_core |> #<1>
 
 2.  Normalization function.
 
+If you used different integration times for your sample and white references, provide this information in the function.
+
+```{r}
+#| eval: false
+
+# Create normalized reflectance file
+reflectance <- hsi_tools_core |> #<1>
+  HSItools::prepare_core( #<2>
+    tints = 90, #<3>
+    tintw = 30) #<4>
+```
+
+1.  The Shiny GUI output.
+
+2.  Normalization function.
+
+3.  Integration time of sample (captured data).
+
+4.  Integration time of white reference.
+
 ::: callout-note
 ## Multiple cores
 
