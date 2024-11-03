@@ -1,1 +1,54 @@
 # Extracting the data
+
+Once you're happy with your indices and plots, you can also extract the underlying data.
+
+## Index profile
+
+You can extract the data that was used to plot the curve:
+
+![Profile of RABD~660:670max~ using the small ROI.](figures/p_rabd_series.png){width="289"}
+
+```{r}
+#| eval: false
+
+# Extract
+d_rabd <- rabd |>
+  extract_spectral_series(
+    index = names(rabd),
+    calibration = pixel_to_distance(hsi_tools_core),
+    extent = rois_sml[1, ])
+
+# Print
+d_rabd
+```
+
+![Tibble of extracted values.](figures/tibble_series.png){width="397"}
+
+## Spectral profile
+
+Similarly, You can extract the data that was used to plot the curve:
+
+![](figures/p_spectrum.png){width="347"}
+
+```{r}
+#| eval: false
+
+d_reflectance <- reflectance |>
+  # Extract profile
+  extract_spectral_profile(extent = rois_sml[1, ])
+
+```
+
+![](figures/spectral_profile_full.png)
+
+Or if you'd like to get the index value, for example to use for calibration
+
+```{r}
+#| eval: false
+
+d_rabd_value <- rabd |>
+  extract_spectral_profile(extent = rois_sml[1, ])
+
+```
+
+![](figures/spectral_profile_rabd.png){width="188"}

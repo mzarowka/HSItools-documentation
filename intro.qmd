@@ -56,3 +56,12 @@ Hyperspectral data gets quite large. It is a good practice to process data store
 # Set tempdir
 terra::terraOptions(tempdir = "D:/", memmax = 0.9)
 ```
+
+First, this is specific only for workflow, where you'd like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R).
+
+```{r}
+#| eval: false
+
+# Set working direcotory
+setwd("C:/GitHub/data/cake/")
+```

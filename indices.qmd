@@ -2,6 +2,28 @@
 
 HSItools offers a way to calculate a few of the most common indices classes used in paleoenvironmental investigations.
 
+## Masking
+
+Before we calculate the indices we can mask the regions of the data that should not be used in the calculations. Here we assume, that we have the mask ROIs available in the environment.
+
+```{r}
+#| eval: false
+
+# Mask the data
+reflectance_msk <- reflectance |> #<1>
+  # Use terra
+  terra::mask( #<2>
+    roi_msk, #<2>
+    inverse = TRUE) #<3>
+```
+
+1.  Reflectance data is either in memory or from a disk.
+2.  {terra} masking funciton.
+3.  Object with masks.
+4.  Inverse the selection.
+
+In every subsequent step it is your choice if you'd like to calculate indices on the full reflectance or the masked one.
+
 ## Mean reflectance (Rmean)
 
 The most straightforward index is the mean of the reflectance values of all selected wavelengths within a given pixel. It reflects overall changes in the darkness or brightness of the captured specimen. It can be used to normalize other indices or filter the data, for example by removing too dark pixels.
@@ -9,12 +31,31 @@ The most straightforward index is the mean of the reflectance values of all sele
 ```{r}
 #| eval: false
 
+# Calculate rmean
 rmean <- reflectance |> #<1>
   HSItools::calculate_rmean() #<2>
 ```
 
 1.  Reflectance data is either in memory or from a disk.
 2.  Calculation function.
+
+You can also specify the extent of calculation.
+
+```{r}
+#| eval: false
+
+# Calculate rmean
+rmean <- reflectance |> #<1>
+  HSItools::calculate_rmean( #<2>
+    extent = roi_sml[1, ] #<3>
+  )
+```
+
+1.  Reflectance data is either in memory or from a disk.
+2.  Calculation function.
+3.  Definition of the extent.
+
+You can use this approach within every subsequent function for calculation of an index.
 
 ## Relative Absorption Band Depth (RABD)
 
@@ -31,6 +72,7 @@ In this variant, a minimum reflectance is found in the trough for each pixel and
 ```{r}
 #| eval: false
 
+# Calculate RABD
 rabd_max <- reflectance |> #<1>
   HSItools::calculate_rabd( #<2>
     edges = c(590, 730), #<3>
@@ -53,6 +95,7 @@ This classic variant supplies a specific wavelength to calculate RABD for every 
 ```{r}
 #| eval: false
 
+# Calculate RABD
 rabd_strict <- reflectance |>
   HSItools::calculate_rabd(
     edges = c(590, 730),
@@ -68,6 +111,7 @@ This is variant 2 (strict), with the added shortcut of always finding the middle
 ```{r}
 #| eval: false
 
+# Calculate RABD
 rabd_midpoint <- reflectance |> #<1>
   HSItools::calculate_rabd( #<2>
     edges = c(590, 730), #<3>
@@ -87,6 +131,7 @@ This is a feature yet to be added.
 ```{r}
 #| eval: false
 
+# Calculate RABA
 raba <- reflectance |> #<1>
   HSItools::calculate_raba( #<2>
     edges = c(590, 730), #<3>
@@ -107,6 +152,7 @@ Another popular and straightforward index is band ratios, where reflectance at w
 ```{r}
 #| eval: false
 
+# Calculate ratio
 ratio_570630 <- reflectance |> #<1>
   HSItools::calculate_band_ratio( #<2>
     edges = c(570, 630), #<3>
@@ -131,6 +177,7 @@ Another popular and straightforward index is band ratios, where reflectance at w
 ```{r}
 #| eval: false
 
+# Calculate derivative
 derivative_550 <- reflectance |> #<1>
   HSItools::calculate_derivative( #<2>
     band = 550, #<3>
@@ -147,6 +194,7 @@ derivative_550 <- reflectance |> #<1>
 ```{r}
 #| eval: false
 
+# Calculate the difference
 difference_650675 <- reflectance |> #<1>
   HSItools::calculate_band_difference( #<2>
     edges = c(650, 675), #<3>
@@ -163,6 +211,7 @@ difference_650675 <- reflectance |> #<1>
 ```{r}
 #| eval: false
 
+# # Calculate NDI
 ndi_650675 <- reflectance |> #<1>
   HSItools::calculate_ndi( #<2>
     edges = c(650, 675), #<3>
@@ -189,6 +238,7 @@ This index was introduced in the paper “Ghanbari, H., Zilkey, D.R., Gregory-Ea
 ```{r}
 #| eval: false
 
+# Calculate λREMP
 remp <- reflectance |> #<1>
   HSItools::calculate_remp() #<2>
 ```

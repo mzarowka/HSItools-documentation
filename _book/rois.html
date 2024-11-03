@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -177,7 +211,11 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#short-path-the-shiny-path" id="toc-short-path-the-shiny-path" class="nav-link active" data-scroll-target="#short-path-the-shiny-path"><span class="header-section-number">4.1</span> Short path – The Shiny Path</a></li>
-  <li><a href="#long-path-the-gis-path" id="toc-long-path-the-gis-path" class="nav-link" data-scroll-target="#long-path-the-gis-path"><span class="header-section-number">4.2</span> Long path – The GIS Path</a></li>
+  <li><a href="#long-path-the-gis-path" id="toc-long-path-the-gis-path" class="nav-link" data-scroll-target="#long-path-the-gis-path"><span class="header-section-number">4.2</span> Long path – The GIS Path</a>
+  <ul class="collapse">
+  <li><a href="#qgis" id="toc-qgis" class="nav-link" data-scroll-target="#qgis"><span class="header-section-number">4.2.1</span> QGIS</a></li>
+  <li><a href="#reading-data-in-r" id="toc-reading-data-in-r" class="nav-link" data-scroll-target="#reading-data-in-r"><span class="header-section-number">4.2.2</span> Reading data in R</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -207,6 +245,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="short-path-the-shiny-path" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="short-path-the-shiny-path"><span class="header-section-number">4.1</span> Short path – The Shiny Path</h2>
 <p>If you opt for the Shiny path, you will work with ROIs selected in the Shiny app. These ROIs are strictly rectangular, and you don’t have an immediate option to mask the data. However, you can still do it later, as you can mask any raster data. The selected regions are available within the HSItools_core.rds file or stored as an in-memory object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the ROIs</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rois <span class="ot">&lt;-</span> hsi_tools_core<span class="sc">$</span>analysisRegions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="long-path-the-gis-path" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="long-path-the-gis-path"><span class="header-section-number">4.2</span> Long path – The GIS Path</h2>
@@ -224,10 +266,61 @@ QGIS project
 <p>It is a good idea to save the QGIS project file so you can keep the placement and customization of your layers. We suggest keeping the project name the same as your captured data.</p>
 </div>
 </div>
-<p>For speed, we load the full-resolution RGB preview generated previously with the <code>stretch_raster_full()</code> function, preferably a .tiff file. Simply dragging and dropping into the empty window is enough. In the options of your new raster layer, you can increase your data’s brightness or contrast, making drawing easier.</p>
-<p>Once you’re happy with your project and data presentation, start drawing.</p>
+<section id="qgis" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="qgis"><span class="header-section-number">4.2.1</span> QGIS</h3>
+<p>For speed, we load the full-resolution RGB preview generated previously with the <code>stretch_raster_full()</code> function, preferably a .tif file. Simply dragging and dropping into the empty window is enough. In the options of your new raster layer, you can increase your data’s brightness or contrast, making drawing easier.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/qgis-01.png" class="img-fluid figure-img"></p>
+<figcaption>QGIS - saving the project.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/qgis-02.png" class="img-fluid figure-img"></p>
+<figcaption>QGIS - creating a new GeoPackage.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/qgis-03.png" class="img-fluid figure-img"></p>
+<figcaption>QGIS - creatin a new GeoPackage, continued. Adding a table for big ROI.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/qgis-04.png" class="img-fluid figure-img"></p>
+<figcaption>QGIS - adding new tables to a GeoPackage (small ROI, samples and masks).</figcaption>
+</figure>
+</div>
+<p>Once you’re happy with your project and data presentation, start drawing. Here we have a large ROI, covering most of the core, a smaller ROI that we will use to extract the data, even smaller ROIs for sample extraction and masks covering parts of the captured data that should be excluded from the analysis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/qgis-05.png" class="img-fluid figure-img"></p>
+<figcaption>QGIS - an example of large and small ROIs, sample markers and masks.</figcaption>
+</figure>
+</div>
+</section>
+<section id="reading-data-in-r" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="reading-data-in-r"><span class="header-section-number">4.2.2</span> Reading data in R</h3>
+<p>We now have all our ROIs. If you need to correct them, add or remove some polygons it is fine, as long as you do not open the GeoPackage file both in QGIS and R at the same time. We keep these ROIs for later.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Large ROI</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>rois_lrg <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(<span class="st">"Achive_half_WR_240212-111356/products/Achive_half_WR_240212-111356_ROI_1.gpkg"</span>, <span class="at">layer =</span> <span class="st">"large_roi"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Small ROI</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>rois_sml <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(<span class="st">"Achive_half_WR_240212-111356/products/Achive_half_WR_240212-111356_ROI_1.gpkg"</span>, <span class="at">layer =</span> <span class="st">"small_roi"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Samples ROIs</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>rois_smp <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(<span class="st">"Achive_half_WR_240212-111356/products/Achive_half_WR_240212-111356_ROI_1.gpkg"</span>, <span class="at">layer =</span> <span class="st">"samples"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Mask ROIs</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>rois_msk <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(<span class="st">"Achive_half_WR_240212-111356/products/Achive_half_WR_240212-111356_ROI_1.gpkg"</span>, <span class="at">layer =</span> <span class="st">"mask"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

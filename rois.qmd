@@ -6,6 +6,13 @@ Selecting regions of interest (ROI) is a crucial task that requires deciding whi
 
 If you opt for the Shiny path, you will work with ROIs selected in the Shiny app. These ROIs are strictly rectangular, and you don't have an immediate option to mask the data. However, you can still do it later, as you can mask any raster data. The selected regions are available within the HSItools_core.rds file or stored as an in-memory object.
 
+```{r}
+#| eval: false
+
+# Get the ROIs
+rois <- hsi_tools_core$analysisRegions
+```
+
 ## Long path – The GIS Path
 
 Here, we assume we are at least somewhat familiar with the GIS environment.
@@ -16,6 +23,39 @@ Here, we assume we are at least somewhat familiar with the GIS environment.
 It is a good idea to save the QGIS project file so you can keep the placement and customization of your layers. We suggest keeping the project name the same as your captured data.
 :::
 
-For speed, we load the full-resolution RGB preview generated previously with the `stretch_raster_full()` function, preferably a .tiff file. Simply dragging and dropping into the empty window is enough. In the options of your new raster layer, you can increase your data's brightness or contrast, making drawing easier.
+### QGIS
 
-Once you're happy with your project and data presentation, start drawing.
+For speed, we load the full-resolution RGB preview generated previously with the `stretch_raster_full()` function, preferably a .tif file. Simply dragging and dropping into the empty window is enough. In the options of your new raster layer, you can increase your data's brightness or contrast, making drawing easier.
+
+![QGIS - saving the project.](figures/qgis-01.png)
+
+![QGIS - creating a new GeoPackage.](figures/qgis-02.png)
+
+![QGIS - creatin a new GeoPackage, continued. Adding a table for big ROI.](figures/qgis-03.png)
+
+![QGIS - adding new tables to a GeoPackage (small ROI, samples and masks).](figures/qgis-04.png)
+
+Once you're happy with your project and data presentation, start drawing. Here we have a large ROI, covering most of the core, a smaller ROI that we will use to extract the data, even smaller ROIs for sample extraction and masks covering parts of the captured data that should be excluded from the analysis.
+
+![QGIS - an example of large and small ROIs, sample markers and masks.](figures/qgis-05.png)
+
+### Reading data in R
+
+We now have all our ROIs. If you need to correct them, add or remove some polygons it is fine, as long as you do not open the GeoPackage file both in QGIS and R at the same time. We keep these ROIs for later.
+
+```{r}
+#| eval: false
+
+# Read data
+# Large ROI
+rois_lrg <- sf::read_sf("Achive_half_WR_240212-111356/products/Achive_half_WR_240212-111356_ROI_1.gpkg", layer = "large_roi")
+
+# Small ROI
+rois_sml <- sf::read_sf("Achive_half_WR_240212-111356/products/Achive_half_WR_240212-111356_ROI_1.gpkg", layer = "small_roi")
+
+# Samples ROIs
+rois_smp <- sf::read_sf("Achive_half_WR_240212-111356/products/Achive_half_WR_240212-111356_ROI_1.gpkg", layer = "samples")
+
+# Mask ROIs
+rois_msk <- sf::read_sf("Achive_half_WR_240212-111356/products/Achive_half_WR_240212-111356_ROI_1.gpkg", layer = "mask")
+```

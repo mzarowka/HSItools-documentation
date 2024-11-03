@@ -42,7 +42,21 @@ First, this is specific only for workflow, where you'd like to calculate reflect
 #| eval: false
 
 # Set working direcotory
-setwd("path/to/my_core")
+setwd("C:/GitHub/data/cake/")
+```
+
+You either have the `HSItools::run_core()` output in memory or you need to read it from disk.
+
+For some reason, once read out from the disk, the .rds file drops the directory. We need to fix it with code.
+
+```{r}
+#| eval: false
+
+# Read from disk
+hsi_tools_core <- readRDS("Achive_half_WR_240212-111356/HSItools_core.rds")
+
+# Add the directory back
+hsi_tools_core$directory <- "Achive_half_WR_240212-111356"
 ```
 
 Then, use the standard function to calculate the reflectance.
@@ -186,3 +200,17 @@ reflectance_cr <- reflectance |> #<1>
 
 1.  Reflectance data is either in memory or from a disk.
 2.  Calculation function.
+
+## Preview
+
+For later use, generate a RGB (CIR, NIR) preview.
+
+```{r}
+#| eval: false
+
+rgb <- reflectance |> #<1>
+  HSItools::stretch_raster_full(type = "RGB", extension = "tif") #<2>
+```
+
+1.  Reflectance data is either in memory or from a disk.
+2.  Stretching function, with type set to RGB (also accepts CIR and NIR) and an extension, works with png, too.
