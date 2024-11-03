@@ -7,30 +7,30 @@ Before any spectral indices and properties are calculated, normalizing the data 
 Normalization is achieved by following the equation:
 
 $$
-reflectance = (d_{raw} - dark_{ref})/(white_{ref} - dark_{ref})
+ref = (d_{raw} - ref_{d})/(ref_{w} - ref_{d})
 $$
 
 **where:**
 
-reflectance: normalized data cube;
+**ref**: normalized data cube;
 
-d~raw~: raw captured data;
+**d~raw~**: raw captured data;
 
-dark~ref~: dark reference data;
+**ref~d~**: dark reference data;
 
-white~ref~: white reference data.
+**ref~w~**: white reference data.
 
 Which can be modified for different acquisition times for white reference:
 
 $$
-reflectance = (d_{raw} - dark_{ref})/(white_{ref} - dark_{ref}) * t_{int}white/t_{int}sample
+ref = (d_{raw} - ref_{dar})/(ref_{w} - ref_{d}) * t_{int-w}/t_{int-s}
 $$
 
 **where:**
 
-t~int~white: integration time of white reference;
+**t~int-w~**: integration time of white reference;
 
-t~int~sample: integration time of captured data (sample).
+**t~int-s~**: integration time of captured data (sample).
 
 ### Normalization with Shiny output
 

@@ -278,20 +278,20 @@ window.Quarto = {
 <p>Before any spectral indices and properties are calculated, normalizing the data and expressing it as a reflectance is necessary. Here, reflectance is a fraction of the signal between the dark and white references acquired during or before the scan.</p>
 <p>Normalization is achieved by following the equation:</p>
 <p><span class="math display">\[
-reflectance = (d_{raw} - dark_{ref})/(white_{ref} - dark_{ref})
+ref = (d_{raw} - ref_{d})/(ref_{w} - ref_{d})
 \]</span></p>
 <p><strong>where:</strong></p>
-<p>reflectance: normalized data cube;</p>
-<p>d<sub>raw</sub>: raw captured data;</p>
-<p>dark<sub>ref</sub>: dark reference data;</p>
-<p>white<sub>ref</sub>: white reference data.</p>
+<p><strong>ref</strong>: normalized data cube;</p>
+<p><strong>d<sub>raw</sub></strong>: raw captured data;</p>
+<p><strong>ref<sub>d</sub></strong>: dark reference data;</p>
+<p><strong>ref<sub>w</sub></strong>: white reference data.</p>
 <p>Which can be modified for different acquisition times for white reference:</p>
 <p><span class="math display">\[
-reflectance = (d_{raw} - dark_{ref})/(white_{ref} - dark_{ref}) * t_{int}white/t_{int}sample
+ref = (d_{raw} - ref_{dar})/(ref_{w} - ref_{d}) * t_{int-w}/t_{int-s}
 \]</span></p>
 <p><strong>where:</strong></p>
-<p>t<sub>int</sub>white: integration time of white reference;</p>
-<p>t<sub>int</sub>sample: integration time of captured data (sample).</p>
+<p><strong>t<sub>int-w</sub></strong>: integration time of white reference;</p>
+<p><strong>t<sub>int-s</sub></strong>: integration time of captured data (sample).</p>
 <section id="normalization-with-shiny-output" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="normalization-with-shiny-output"><span class="header-section-number">3.1.1</span> Normalization with Shiny output</h3>
 <p>If Shiny GUI was used for data selection, cropping, and calibration, then it would be easy to pass Shiny’s output to the normalization routine. The normalized files will be written into your data’s products directory.</p>
