@@ -61,7 +61,7 @@ terra::terraOptions(tempdir = "D:/", memmax = 0.9)
 
 First, this is specific only for workflow, where you'd like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R).
 
-Here we're using the example dataset provided by @zahajská2024 Zahajská et al. (2024) which is available at <https://zenodo.org/records/13925618>.
+Here we're using the example dataset provided by @zahajská2024 which is available at <https://zenodo.org/records/13925618>.
 
 ```{r}
 #| eval: false
