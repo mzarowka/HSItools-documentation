@@ -36,7 +36,7 @@ $$
 
 If Shiny GUI was used for data selection, cropping, and calibration, then it would be easy to pass Shiny's output to the normalization routine. The normalized files will be written into your data's products directory.
 
-First, this is specific only for workflow, where you'd like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R).
+First, this is specific only for workflow, where you'd like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R). Working directory should point one level above your captured data directory.
 
 ```{r}
 #| eval: false
@@ -47,16 +47,11 @@ setwd("C:/GitHub/data/cake/")
 
 You either have the `HSItools::run_core()` output in memory or you need to read it from disk.
 
-For some reason, once read out from the disk, the .rds file drops the directory. We need to fix it with code.
-
 ```{r}
 #| eval: false
 
 # Read from disk
 hsi_tools_core <- readRDS("Achive_half_WR_240212-111356/HSItools_core.rds")
-
-# Add the directory back
-hsi_tools_core$directory <- "Achive_half_WR_240212-111356"
 ```
 
 Then, use the standard function to calculate the reflectance.
@@ -168,7 +163,7 @@ This function applies a smooth filter to every pixel. Depending on the size of y
 
 ## Median filter
 
-You might be interested in smoothing your data spatially to remove some of the noise in the XY domain.
+You might be interested in smoothing your data spatially to remove some of the noise in the XY domain. Data is saved to disk.
 
 ```{r}
 #| eval: false
@@ -191,6 +186,12 @@ This function applies a focal median filter to every pixel. Depending on the siz
 
 We can process our data further by removing the continuum, which follows the rule of dividing the spectrum by its bounding box. This way, the spectrum becomes flatter.
 
+::: callout-warning
+## ToDo
+
+While function technically works, it is not producing desired output for HSI means.
+:::
+
 ```{r}
 #| eval: false
 
@@ -209,8 +210,12 @@ For later use, generate a RGB (CIR, NIR) preview.
 #| eval: false
 
 rgb <- reflectance |> #<1>
-  HSItools::stretch_raster_full(type = "RGB", extension = "tif") #<2>
+  HSItools::stretch_raster_full( #<2>
+    type = "RGB", #<3>
+    extension = "tif") #<4>
 ```
 
 1.  Reflectance data is either in memory or from a disk.
-2.  Stretching function, with type set to RGB (also accepts CIR and NIR) and an extension, works with png, too.
+2.  Stretching function
+3.  with type set to RGB (also accepts CIR and NIR).
+4.  And an extension, works with png, too.

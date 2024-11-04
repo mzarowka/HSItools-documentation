@@ -295,19 +295,15 @@ ref = (d_{raw} - ref_{dar})/(ref_{w} - ref_{d}) * t_{int-w}/t_{int-s}
 <section id="normalization-with-shiny-output" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="normalization-with-shiny-output"><span class="header-section-number">3.1.1</span> Normalization with Shiny output</h3>
 <p>If Shiny GUI was used for data selection, cropping, and calibration, then it would be easy to pass Shiny’s output to the normalization routine. The normalized files will be written into your data’s products directory.</p>
-<p>First, this is specific only for workflow, where you’d like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R).</p>
+<p>First, this is specific only for workflow, where you’d like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R). Working directory should point one level above your captured data directory.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set working direcotory</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/GitHub/data/cake/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You either have the <code>HSItools::run_core()</code> output in memory or you need to read it from disk.</p>
-<p>For some reason, once read out from the disk, the .rds file drops the directory. We need to fix it with code.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read from disk</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hsi_tools_core <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"Achive_half_WR_240212-111356/HSItools_core.rds"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the directory back</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>hsi_tools_core<span class="sc">$</span>directory <span class="ot">&lt;-</span> <span class="st">"Achive_half_WR_240212-111356"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hsi_tools_core <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"Achive_half_WR_240212-111356/HSItools_core.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, use the standard function to calculate the reflectance.</p>
 <div class="cell">
@@ -468,7 +464,7 @@ Speed
 </section>
 <section id="median-filter" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="median-filter"><span class="header-section-number">3.3</span> Median filter</h2>
-<p>You might be interested in smoothing your data spatially to remove some of the noise in the XY domain.</p>
+<p>You might be interested in smoothing your data spatially to remove some of the noise in the XY domain. Data is saved to disk.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a>reflectance <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
 <span id="annotated-cell-8-2"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Specify the file extension</span></span>
@@ -503,6 +499,19 @@ Speed
 <section id="continuum-removal" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="continuum-removal"><span class="header-section-number">3.4</span> Continuum removal</h2>
 <p>We can process our data further by removing the continuum, which follows the rule of dividing the spectrum by its bounding box. This way, the spectrum becomes flatter.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ToDo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While function technically works, it is not producing desired output for HSI means.</p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a>reflectance_cr <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">remove_continuum</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -525,7 +534,9 @@ Speed
 <p>For later use, generate a RGB (CIR, NIR) preview.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-10-1" class="code-annotation-target"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a>rgb <span class="ot">&lt;-</span> reflectance <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">stretch_raster_full</span>(<span class="at">type =</span> <span class="st">"RGB"</span>, <span class="at">extension =</span> <span class="st">"tif"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a>  HSItools<span class="sc">::</span><span class="fu">stretch_raster_full</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-10-3" class="code-annotation-target"><a href="#annotated-cell-10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"RGB"</span>,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-10-4" class="code-annotation-target"><a href="#annotated-cell-10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">extension =</span> <span class="st">"tif"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
@@ -534,7 +545,15 @@ Speed
 </dd>
 <dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-10" data-code-lines="2" data-code-annotation="2">Stretching function, with type set to RGB (also accepts CIR and NIR) and an extension, works with png, too.</span>
+<span data-code-cell="annotated-cell-10" data-code-lines="2" data-code-annotation="2">Stretching function</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="3" data-code-annotation="3">with type set to RGB (also accepts CIR and NIR).</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="4" data-code-annotation="4">And an extension, works with png, too.</span>
 </dd>
 </dl>
 </div>

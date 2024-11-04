@@ -94,13 +94,20 @@ This classic variant supplies a specific wavelength to calculate RABD for every 
 #| eval: false
 
 # Calculate RABD
-rabd_strict <- reflectance |>
-  HSItools::calculate_rabd(
-    edges = c(590, 730),
-    trough = 665,
-    rabd_name = "rabd665",
-    rabd_type = "strict")
+rabd_strict <- reflectance |> #<1>
+  HSItools::calculate_rabd( #<2>
+    edges = c(590, 730), #<3>
+    trough = 665, #<4>
+    rabd_name = "rabd665", #<5>
+    rabd_type = "strict") #<6>
 ```
+
+1.  Reflectance data is either in memory or from a disk.
+2.  Calculation function.
+3.  Edges of the trough, the broader scope.
+4.  Trough of interest, a narrower scope to find the reflectance value.
+5.  Name of the index to be stored in the raster data.
+6.  Type of the RABD calculation.
 
 ### Variant 3 – "midpoint"
 
@@ -118,6 +125,13 @@ rabd_midpoint <- reflectance |> #<1>
     rabd_type = "mid") #<6>
 ```
 
+1.  Reflectance data is either in memory or from a disk.
+2.  Calculation function.
+3.  Edges of the trough, the broader scope.
+4.  Trough of interest, a narrower scope to find the reflectance value.
+5.  Name of the index to be stored in the raster data.
+6.  Type of the RABD calculation.
+
 ## Relative Absorption Band Area - ToDo
 
 ::: callout-warning
@@ -134,7 +148,7 @@ raba <- reflectance |> #<1>
   HSItools::calculate_raba( #<2>
     edges = c(590, 730), #<3>
     trough = c(660:670), #<4>
-    raba_name = "raba660670"), #<5>
+    raba_name = "raba660670") #<5>
 ```
 
 1.  Reflectance data is either in memory or from a disk.

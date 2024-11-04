@@ -2,7 +2,7 @@
 
 ## RGB, NIC and CIR preview
 
-Preview RGB with the scale.
+Preview RGB with the scale. In all of the following functions, you can call the `extent` argument.
 
 ```{r}
 #| eval: false
@@ -11,8 +11,8 @@ Preview RGB with the scale.
 p_rgb <- reflectance |>
   # Plot
   plot_raster_rgb( #<1>
-    calibration = pixel_to_distance(hsi_tools_core), #<2>
-    # extent = roi_sml[1, ]) #<3>
+    calibration = pixel_to_distance(hsi_tools_core) #<2>
+  )
 
 # Print
 p_rgb
@@ -20,13 +20,12 @@ p_rgb
 
 1.  Function to plot RGB.
 2.  Call to HSItools core output of the Shiny app storing the depth calibration.
-3.  Optional call to use extent.
 
 ![Plot of RGB data with depth scale.](figures/p_rgb.png)
 
 ## Index map
 
-For example, we can plot the spatial map of RABD660:670max.
+For example, we can plot the spatial map of RABD~660:670max~.
 
 ```{r}
 #| eval: false
@@ -37,7 +36,7 @@ p_rabd <- rabd_max |>
     hsi_index = names(rabd), #<2>
     calibration = pixel_to_distance(hsi_tools_core), #<3>
     palette = "viridis", #<4>
-    # extent = roi_sml[1, ]) #<5>
+  )
 
 # Print
 p_rabd
@@ -47,7 +46,6 @@ p_rabd
 2.  Name specification.
 3.  Call to HSItools core output of the Shiny app storing the depth calibration.
 4.  Palette of choice, one of the {viridis} options.
-5.  Optional call to use extent.
 
 ![Plot of RABD~660:670max~ data with depth scale.](figures/p_rabd.png)
 
@@ -63,14 +61,17 @@ We can extract profile of the selected index using one of the predefined ROIs. W
 # Plot series
 p_rabd_series <- rabd |>
   # Plot
-  HSItools::plot_profile_spectral_series(
-    hsi_index = names(rabd),
-    calibration = pixel_to_distance(hsi_tools_core),
-    extent = rois_sml[1, ])
+  HSItools::plot_profile_spectral_series( #<1>
+    hsi_index = names(rabd), #<2>
+    calibration = pixel_to_distance(hsi_tools_core), #<3>
 
 # Print
 p_rabd_series
 ```
+
+1.  Function to plot index profile.
+2.  Name specification.
+3.  Call to HSItools core output of the Shiny app storing the depth calibration.
 
 ![Profile of RABD~660:670max~ using the small ROI.](figures/p_rabd_series.png)
 
@@ -79,7 +80,7 @@ We can display it side by side using the magic of {patchwork}.
 ```{r}
 #| eval: false
 
-# Plot
+# Plot using {patchwork}
 p_rgb + p_rabd + p_rabd_series
 ```
 
@@ -94,10 +95,12 @@ Finally, you might be interested in plotting the average spectrum from the selec
 
 # Plot reflectance profile
 p_sample <- reflectance |>
-  plot_profile_spectral_profile(extent = rois_smp[1, ])
+  plot_profile_spectral_profile() #<1>
 
 # Print
 p_sample
 ```
+
+1.  Function to plot spectral profile.
 
 ![Reflectance profile of the topmost "sample" area.](figures/p_spectrum.png)

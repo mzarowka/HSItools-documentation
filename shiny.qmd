@@ -14,6 +14,15 @@ Suppose you decide that you need to normalize your data. In that case, you can s
 At the moment, selecting indices will not do anything in particular.
 :::
 
+Run the Shiny app.
+
+```{r}
+#| eval: false
+
+# Run shiny app
+hsi_tools_core <- HSItools::run_core()
+```
+
 ![Shiny – first screen, basic options.](figures/shiny_1.png)
 
 ## Screen 2: Data choice
