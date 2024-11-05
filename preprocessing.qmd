@@ -1,4 +1,4 @@
-# Preprocessing
+# Preprocessing {#sec-Preprocessing}
 
 ## Normalization
 
@@ -36,14 +36,24 @@ $$
 
 If Shiny GUI was used for data selection, cropping, and calibration, then it would be easy to pass Shiny's output to the normalization routine. The normalized files will be written into your data's products directory.
 
-First, this is specific only for workflow, where you'd like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R). Working directory should point one level above your captured data directory.
+First, this is specific only for workflow, where you'd like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R). Working directory should point two levels above your */capture* data directory.
+
+For example, if you are working with "YOUR CORE" then working directory should point one level above it, and therefore two levels above the capture.
+
+> – WORKING DIRECTORY\<directory\>
+>
+> –– YOUR CORE \<directory\>
+>
+> ––– capture \<directory\>
 
 ```{r}
 #| eval: false
 
 # Set working direcotory
-setwd("C:/GitHub/data/cake/")
+setwd("C:/GitHub/data/cake/") #<1>
 ```
+
+1.  Path to your working directory. In cake folder we have two different cores.
 
 You either have the `HSItools::run_core()` output in memory or you need to read it from disk.
 

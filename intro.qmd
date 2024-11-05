@@ -48,6 +48,7 @@ library(signal)
 library(sf)
 library(prospectr)
 library(patchwork)
+library(raster)
 ```
 
 Hyperspectral data gets quite large. It is a good practice to process data stored on an SSD drive separate from your Operating System (OS). While data is stored on a separate drive, it is beneficial to instruct {terra} to store temporary data on a separate drive, too. Adjust this according to your OS. Here, we are using a non-system drive on Windows 11. We set the maximum allowed RAM to a high value of 0.9. It would be best to decide according to the available memory and OS requirements.
@@ -59,7 +60,7 @@ Hyperspectral data gets quite large. It is a good practice to process data store
 terra::terraOptions(tempdir = "D:/", memmax = 0.9)
 ```
 
-First, this is specific only for workflow, where you'd like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R).
+First, this is specific only for workflow, where you'd like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R). More on it in the @sec-Preprocessing.
 
 Here we're using the example dataset provided by @zahajská2024 which is available at <https://zenodo.org/records/13925618>.
 

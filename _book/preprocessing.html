@@ -256,7 +256,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preprocessing</span></h1>
+<h1 class="title"><span id="sec-Preprocessing" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Preprocessing</span></span></h1>
 </div>
 
 
@@ -295,15 +295,29 @@ ref = (d_{raw} - ref_{dar})/(ref_{w} - ref_{d}) * t_{int-w}/t_{int-s}
 <section id="normalization-with-shiny-output" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="normalization-with-shiny-output"><span class="header-section-number">3.1.1</span> Normalization with Shiny output</h3>
 <p>If Shiny GUI was used for data selection, cropping, and calibration, then it would be easy to pass Shiny’s output to the normalization routine. The normalized files will be written into your data’s products directory.</p>
-<p>First, this is specific only for workflow, where you’d like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R). Working directory should point one level above your captured data directory.</p>
+<p>First, this is specific only for workflow, where you’d like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R). Working directory should point two levels above your <em>/capture</em> data directory.</p>
+<p>For example, if you are working with “YOUR CORE” then working directory should point one level above it, and therefore two levels above the capture.</p>
+<blockquote class="blockquote">
+<p>– WORKING DIRECTORY&lt;directory&gt;</p>
+<p>–– YOUR CORE &lt;directory&gt;</p>
+<p>––– capture &lt;directory&gt;</p>
+</blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set working direcotory</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/GitHub/data/cake/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set working direcotory</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/GitHub/data/cake/"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="1">Path to your working directory. In cake folder we have two different cores.</span>
+</dd>
+</dl>
+</div>
 </div>
 <p>You either have the <code>HSItools::run_core()</code> output in memory or you need to read it from disk.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read from disk</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hsi_tools_core <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"Achive_half_WR_240212-111356/HSItools_core.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read from disk</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>hsi_tools_core <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"Achive_half_WR_240212-111356/HSItools_core.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, use the standard function to calculate the reflectance.</p>
 <div class="cell">

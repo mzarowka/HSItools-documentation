@@ -290,22 +290,23 @@ div.csl-indent {
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(signal)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(prospectr)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Hyperspectral data gets quite large. It is a good practice to process data stored on an SSD drive separate from your Operating System (OS). While data is stored on a separate drive, it is beneficial to instruct {terra} to store temporary data on a separate drive, too. Adjust this according to your OS. Here, we are using a non-system drive on Windows 11. We set the maximum allowed RAM to a high value of 0.9. It would be best to decide according to the available memory and OS requirements.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set tempdir</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">terraOptions</span>(<span class="at">tempdir =</span> <span class="st">"D:/"</span>, <span class="at">memmax =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>First, this is specific only for workflow, where you’d like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R).</p>
-<p>Here we’re using the example dataset provided by <span class="citation" data-cites="zahajská2024">Zahajská et al. (<a href="#ref-zahajská2024" role="doc-biblioref">2024</a>)</span> which is available at <a href="https://zenodo.org/records/13925618" class="uri">https://zenodo.org/records/13925618</a>.</p>
+<p>First, this is specific only for workflow, where you’d like to calculate reflectance from the Shiny output. We must set the working directory (otherwise, we discourage this approach in R). More on it in the <a href="preprocessing.html" class="quarto-xref"><span>Chapter 3</span></a>.</p>
+<p>Here we’re using the example dataset provided by <span class="citation" data-cites="zahajská2024">Zahajská et al. (<a href="references.html#ref-zahajská2024" role="doc-biblioref">2024</a>)</span> which is available at <a href="https://zenodo.org/records/13925618" class="uri">https://zenodo.org/records/13925618</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set working direcotory</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/GitHub/data/cake/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-zahajská2024" class="csl-entry" role="listitem">
 Zahajská, Petra, Giulia Wienhues, Emmanuel Schaad, and Guillaume Witz. 2024. <span>“Hyperspectral Imaging of Cake.”</span> Zenodo. <a href="https://doi.org/10.5281/ZENODO.13925618">https://doi.org/10.5281/ZENODO.13925618</a>.
 </div>
