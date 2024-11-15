@@ -265,7 +265,7 @@ Indices
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/shiny_1.png" class="img-fluid figure-img"></p>
+<p><img src="figures/shiny_1.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Shiny – first screen, basic options.</figcaption>
 </figure>
 </div>
@@ -275,58 +275,45 @@ Indices
 <p>This screen lets you decide whether to use your data or the provided example.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/shiny_2.png" class="img-fluid figure-img"></p>
+<p><img src="figures/shiny_2.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Shiny – data choice.</figcaption>
 </figure>
 </div>
 <p>You can select your data from your drive once you use it. Be sure that it is stored on the SSD drive. Here, it is essential that you do not go all the way to the capture folder but rather point to the root directory of your selected scan.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/shiny_3.png" class="img-fluid figure-img"></p>
+<p><img src="figures/shiny_3.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Shiny – data selection.</figcaption>
 </figure>
 </div>
 <p>Once you’ve selected data, you can choose the raster files, bypassing our heuristics and default search patterns in the “capture” directory. At this point, you’ll also get some basic information on your raster dimensions.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/shiny_4.png" class="img-fluid figure-img"></p>
+<p><img src="figures/shiny_4.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Shiny – data selection continued.</figcaption>
 </figure>
 </div>
 <p>Once you’re happy with your data choice, select layers (bands) to work with.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/shiny_5.png" class="img-fluid figure-img"></p>
+<p><img src="figures/shiny_5.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Shiny – data selection, layers.</figcaption>
 </figure>
 </div>
 <p>If you’re happy with your choices, scroll down and proceed.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/shiny_6.png" class="img-fluid figure-img"></p>
+<p><img src="figures/shiny_6.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Shiny – data selection, finish.</figcaption>
 </figure>
 </div>
 </section>
 <section id="screen-3-cropping" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="screen-3-cropping"><span class="header-section-number">2.3</span> Screen 3: Cropping</h2>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Raster preview
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Some scans will look “bad” on this and the next screen. It is still your data. We’re working on it! :)</p>
-</div>
-</div>
 <p>Here, you can crop your data (raster). You can see the bounding box of the cropped data. If it helps, you can change the size of the image. Leave a pixel or two on the edges; if pushed to the extremes, it can mess up the cropping. Once you’re happy, accept the crop and proceed.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/shiny_7.png" class="img-fluid figure-img"></p>
+<p><img src="figures/shiny_7.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Shiny – cropping.</figcaption>
 </figure>
 </div>
@@ -336,38 +323,25 @@ Raster preview
 <p>Here, you can select the regions of interest (ROI) you want to work over rather than calculating the entire data. These ROIs are strictly rectangular, so we prefer the GIS approach with masking. Please select the region, then add it using the button. Repeat for as many regions as you need. On the right, you have a zoom of your selection. Once you’re happy with your ROIs, accept and proceed.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/shiny_8.png" class="img-fluid figure-img"></p>
+<p><img src="figures/shiny_8.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Shiny - ROIs selection.</figcaption>
 </figure>
 </div>
 </section>
 <section id="screen-5-calibration" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="screen-5-calibration"><span class="header-section-number">2.5</span> Screen 5: Calibration</h2>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-RGB preview
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Here, the captured data looks as it should!</p>
-</div>
-</div>
 <p>Finally, it is time to calibrate your data.</p>
 <p>First, we calibrate the distance. Simply put, we want to know the actual distance in one pixel. For this, we use the tape measure and put the two markers. Then, we read the depth from the tape—the further the distance between the points, the better. We use only 20 mm, so it fits on the screen. Our equation takes into account both the distance and angle.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/shiny_10.png" class="img-fluid figure-img"></p>
+<p><img src="figures/shiny_10.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Shiny – depth calibration.</figcaption>
 </figure>
 </div>
 <p>Finally, we put in the second set of markers, which tracks the actual beginning and end of the scanned sample—the true-zero is essential here.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/shiny_11.png" class="img-fluid figure-img"></p>
+<p><img src="figures/shiny_11.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Shiny – true-zero calibration.</figcaption>
 </figure>
 </div>

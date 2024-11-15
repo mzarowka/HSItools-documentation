@@ -38,6 +38,8 @@ pak::pak("mzarowka/HSItools")
 ## Terra
 
 Because the latest version of {terra}, which does most of the raster heavy-lifting, has a bug resulting in flipped images, we must install older version.
+
+**The development version of {terra} fixed this issue, so now we wait for the official release.**
 :::
 
 ```{r}

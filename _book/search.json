@@ -14,7 +14,7 @@
     "href": "index.html#installation",
     "title": "HSItools documentation",
     "section": "Installation",
-    "text": "Installation\n{HSItools} is currently in development and available only from GitHub.\n\n\n\n\n\n\nPackage installation\n\n\n\nWe are using {pak} for installation from remote sources.\n\n\n\n# Install pak if necessary\ninstall.packages(\"pak\")\n\n# Install HSItools\npak::pak(\"mzarowka/HSItools\")\n\n\n\n\n\n\n\nTerra\n\n\n\nBecause the latest version of {terra}, which does most of the raster heavy-lifting, has a bug resulting in flipped images, we must install older version.\n\n\n\n# Install older version from CRAN\npak::pak(\"terra@1.7-78\")",
+    "text": "Installation\n{HSItools} is currently in development and available only from GitHub.\n\n\n\n\n\n\nPackage installation\n\n\n\nWe are using {pak} for installation from remote sources.\n\n\n\n# Install pak if necessary\ninstall.packages(\"pak\")\n\n# Install HSItools\npak::pak(\"mzarowka/HSItools\")\n\n\n\n\n\n\n\nTerra\n\n\n\nBecause the latest version of {terra}, which does most of the raster heavy-lifting, has a bug resulting in flipped images, we must install older version.\nThe development version of {terra} fixed this issue, so now we wait for the official release.\n\n\n\n# Install older version from CRAN\npak::pak(\"terra@1.7-78\")",
     "crumbs": [
       "Preface"
     ]
@@ -94,7 +94,7 @@
     "href": "shiny.html#screen-3-cropping",
     "title": "2  Shiny app",
     "section": "2.3 Screen 3: Cropping",
-    "text": "2.3 Screen 3: Cropping\n\n\n\n\n\n\nRaster preview\n\n\n\nSome scans will look “bad” on this and the next screen. It is still your data. We’re working on it! :)\n\n\nHere, you can crop your data (raster). You can see the bounding box of the cropped data. If it helps, you can change the size of the image. Leave a pixel or two on the edges; if pushed to the extremes, it can mess up the cropping. Once you’re happy, accept the crop and proceed.\n\n\n\nShiny – cropping.",
+    "text": "2.3 Screen 3: Cropping\nHere, you can crop your data (raster). You can see the bounding box of the cropped data. If it helps, you can change the size of the image. Leave a pixel or two on the edges; if pushed to the extremes, it can mess up the cropping. Once you’re happy, accept the crop and proceed.\n\n\n\nShiny – cropping.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
     ]
@@ -114,7 +114,7 @@
     "href": "shiny.html#screen-5-calibration",
     "title": "2  Shiny app",
     "section": "2.5 Screen 5: Calibration",
-    "text": "2.5 Screen 5: Calibration\n\n\n\n\n\n\nRGB preview\n\n\n\nHere, the captured data looks as it should!\n\n\nFinally, it is time to calibrate your data.\nFirst, we calibrate the distance. Simply put, we want to know the actual distance in one pixel. For this, we use the tape measure and put the two markers. Then, we read the depth from the tape—the further the distance between the points, the better. We use only 20 mm, so it fits on the screen. Our equation takes into account both the distance and angle.\n\n\n\nShiny – depth calibration.\n\n\nFinally, we put in the second set of markers, which tracks the actual beginning and end of the scanned sample—the true-zero is essential here.\n\n\n\nShiny – true-zero calibration.\n\n\nOnce you select both sets of markers, accept and exit the app.",
+    "text": "2.5 Screen 5: Calibration\nFinally, it is time to calibrate your data.\nFirst, we calibrate the distance. Simply put, we want to know the actual distance in one pixel. For this, we use the tape measure and put the two markers. Then, we read the depth from the tape—the further the distance between the points, the better. We use only 20 mm, so it fits on the screen. Our equation takes into account both the distance and angle.\n\n\n\nShiny – depth calibration.\n\n\nFinally, we put in the second set of markers, which tracks the actual beginning and end of the scanned sample—the true-zero is essential here.\n\n\n\nShiny – true-zero calibration.\n\n\nOnce you select both sets of markers, accept and exit the app.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
     ]
