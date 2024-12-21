@@ -14,7 +14,7 @@
     "href": "index.html#installation",
     "title": "HSItools documentation",
     "section": "Installation",
-    "text": "Installation\n{HSItools} is currently in development and available only from GitHub.\n\n\n\n\n\n\nPackage installation\n\n\n\nWe are using {pak} for installation from remote sources.\n\n\n\n# Install pak if necessary\ninstall.packages(\"pak\")\n\n# Install HSItools\npak::pak(\"mzarowka/HSItools\")\n\n\n\n\n\n\n\nTerra\n\n\n\nBecause the latest version of {terra}, which does most of the raster heavy-lifting, has a bug resulting in flipped images, we must install older version.\nThe development version of {terra} fixed this issue, so now we wait for the official release.\n\n\n\n# Install older version from CRAN\npak::pak(\"terra@1.7-78\")",
+    "text": "Installation\n{HSItools} is currently in development and available only from GitHub.\n\n\n\n\n\n\nPackage installation\n\n\n\nWe are using {pak} for installation from remote sources.\n\n\n\n# Install pak if necessary\ninstall.packages(\"pak\")\n\n# Install HSItools\npak::pak(\"mzarowka/HSItools\")",
     "crumbs": [
       "Preface"
     ]
@@ -34,7 +34,7 @@
     "href": "intro.html",
     "title": "1  Initial state",
     "section": "",
-    "text": "1.1 Data structure\nData should be structured as follows:\nHowever, if necessary, you can select appropriate files on your own. Files with the extension .raw are data files, while files with the .hdr extension are header files that contain essential information, such as the number of pixels, facilitating data reading.",
+    "text": "1.1 Data structure\nHSItools offers an easy way to preprocess Specim data. However, if the data follows the same rules, it can be generalized to the broader workflow.\nData should be structured as follows:\nHowever, if necessary, you can select appropriate files on your own. Files with the extension .raw are data files, while files with the .hdr extension are header files that contain essential information, such as the number of pixels, facilitating data reading.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Initial state</span>"
     ]
@@ -64,7 +64,7 @@
     "href": "shiny.html",
     "title": "2  Shiny app",
     "section": "",
-    "text": "2.1 Screen 1: Initial settings\nOn this screen, you have to make an initial choice. First, you need to decide whether to normalize data. If you have a reflectance file from other software, like Lumo®, you probably do not need to normalize the file from the beginning—this is one of the most time-consuming processes.\nSuppose you decide that you need to normalize your data. In that case, you can select other integration times for your white and dark references if you scanned your target with different settings for target and references. This can happen if you were worried about white reference overexposure, whereas your target was very dark. Finally, you can select some proposed HSI indices from the defaults.\nRun the Shiny app.\n# Run shiny app\nhsi_tools_core &lt;- HSItools::run_core()",
+    "text": "2.1 Screen 1: Initial settings\nOur shiny app allows quick choice of data, settings, regions of interest (ROI), and depth calibration. Here, we walk through the entire app, screen by screen.\nOn this screen, you have to make an initial choice. First, you need to decide whether to normalize data. If you have a reflectance file from other software, like Lumo®, you probably do not need to normalize the file from the beginning—this is one of the most time-consuming processes.\nSuppose you decide that you need to normalize your data. In that case, you can select other integration times for your white and dark references if you scanned your target with different settings for target and references. This can happen if you were worried about white reference overexposure, whereas your target was very dark. Finally, you can select some proposed HSI indices from the defaults.\nRun the Shiny app.\n# Run shiny app\nhsi_tools_core &lt;- HSItools::run_core()",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Shiny app</span>"
     ]
@@ -184,7 +184,7 @@
     "href": "rois.html",
     "title": "4  Regions of interest",
     "section": "",
-    "text": "4.1 Short path – The Shiny Path\nIf you opt for the Shiny path, you will work with ROIs selected in the Shiny app. These ROIs are strictly rectangular, and you don’t have an immediate option to mask the data. However, you can still do it later, as you can mask any raster data. The selected regions are available within the HSItools_core.rds file or stored as an in-memory object.\n# Get the ROIs\nrois &lt;- hsi_tools_core$analysisRegions",
+    "text": "4.1 Short path – The Shiny Path\nSelecting regions of interest (ROI) is a crucial task that requires deciding which parts of the spatial dataset will be analyzed. With HSItools, we follow two paths to select the data. The short one is based solely on the Shiny output and is limited, and the longer one is based on the Geographic Information System (GIS Software). In the spirit of the free and open source, we suggest QGIS, but other apps, such as ArcGIS Pro, allow the same functionality. What’s important is that using GIS will enable you to freely draw shapes for data masking, a technique that helps you to focus on specific areas of the dataset while excluding others – more on this later.\nIf you opt for the Shiny path, you will work with ROIs selected in the Shiny app. These ROIs are strictly rectangular, and you don’t have an immediate option to mask the data. However, you can still do it later, as you can mask any raster data. The selected regions are available within the HSItools_core.rds file or stored as an in-memory object.\n# Get the ROIs\nrois &lt;- hsi_tools_core$analysisRegions",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Regions of interest</span>"
     ]
@@ -204,7 +204,7 @@
     "href": "indices.html",
     "title": "5  Indices",
     "section": "",
-    "text": "5.1 Masking\nBefore we calculate the indices we can mask the regions of the data that should not be used in the calculations. Here we assume, that we have the mask ROIs available in the environment. You can mask your data at any point by passing your raster data to mask function.\n# Mask the data\n1reflectance_msk &lt;- reflectance |&gt;\n  # Use terra\n2  terra::mask(\n    roi_msk,\n3    inverse = TRUE)\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\n{terra} masking funciton.\n\n3\n\nObject with masks.\nIn every subsequent step it is your choice if you’d like to calculate indices on the full reflectance or the masked one.",
+    "text": "5.1 Masking\nHSItools offers a way to calculate a few of the most common indices classes used in paleoenvironmental investigations.\nBefore we calculate the indices we can mask the regions of the data that should not be used in the calculations. Here we assume, that we have the mask ROIs available in the environment. You can mask your data at any point by passing your raster data to mask function.\n# Mask the data\n1reflectance_msk &lt;- reflectance |&gt;\n  # Use terra\n2  terra::mask(\n    roi_msk,\n3    inverse = TRUE)\n\n\n1\n\nReflectance data is either in memory or from a disk.\n\n2\n\n{terra} masking funciton.\n\n3\n\nObject with masks.\nIn every subsequent step it is your choice if you’d like to calculate indices on the full reflectance or the masked one.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Indices</span>"
     ]
@@ -354,7 +354,7 @@
     "href": "extracting.html",
     "title": "7  Extracting the data",
     "section": "",
-    "text": "7.1 Index profile\nYou can extract the data that was used to plot this curve:\n# Extract the series\nd_rabd &lt;- rabd |&gt;\n  extract_spectral_series(\n    index = names(rabd),\n    calibration = pixel_to_distance(hsi_tools_core),\n    extent = rois_sml[1, ])\n\n# Print\nd_rabd",
+    "text": "7.1 Index profile\nOnce you’re happy with your indices and plots, you can also extract the underlying data.\nYou can extract the data that was used to plot this curve:\n# Extract the series\nd_rabd &lt;- rabd |&gt;\n  extract_spectral_series(\n    index = names(rabd),\n    calibration = pixel_to_distance(hsi_tools_core),\n    extent = rois_sml[1, ])\n\n# Print\nd_rabd",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Extracting the data</span>"
     ]

@@ -34,21 +34,6 @@ install.packages("pak")
 pak::pak("mzarowka/HSItools")
 ```
 
-::: callout-important
-## Terra
-
-Because the latest version of {terra}, which does most of the raster heavy-lifting, has a bug resulting in flipped images, we must install older version.
-
-**The development version of {terra} fixed this issue, so now we wait for the official release.**
-:::
-
-```{r}
-#| eval: false
-
-# Install older version from CRAN
-pak::pak("terra@1.7-78")
-```
-
 ## QGIS
 
 In our workflow we delegate some of the work to GIS environment, especially marking the raster files, selecting regions and so on. We strongly suggest an Open Source tool like QGIS, however any GIS software, such as ESRI ArcGIS Pro should suffice.
